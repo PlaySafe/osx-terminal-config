@@ -8,32 +8,38 @@ syntax on                                 " Turn on syntax highlighting
     call plug#begin()
 
         """ Main plugin for working
-        Plug 'scrooloose/nerdtree'           " Display folder in tree structure
-        "Plug 'valloric/youcompleteme'       " Code completion engine
-        "Plug 'fatih/vim-go', { 'do': ':GoUpdateBinaries' }  "Specific plugin for golang file (.go)
-        "Plug 'neoclide/coc-java'             " Intellisense for Java
-        Plug 'neoclide/coc.nvim', {'branch': 'release'}
-        Plug 'neovim/nvim-lspconfig'
-        Plug 'hrsh7th/nvim-cmp'
+        Plug 'scrooloose/nerdtree'                                   " Display folder in tree structure
+        Plug 'neovim/nvim-lspconfig'                                 " LSP for languages
+        Plug 'williamboman/nvim-lsp-installer'                       " Provide LSP command, easy to install
+        Plug 'hrsh7th/nvim-cmp'                                      " Intellisense
         Plug 'hrsh7th/cmp-nvim-lsp'
-        "Plug 'saadparwaiz1/cmp_luasnip'
+        Plug 'hrsh7th/cmp-buffer'
+        Plug 'hrsh7th/cmp-path'
+        Plug 'hrsh7th/cmp-cmdline'
+        Plug 'hrsh7th/cmp-vsnip'
+        Plug 'hrsh7th/vim-vsnip'
+        Plug 'tpope/vim-commentary'                                  " Normal mode commenting (gcc & gc)
 
         """ File searching Plugins
-        Plug 'nvim-lua/plenary.nvim'         " Mandatory plugin for telescope (Required by Telescope & Harpoon)
-        Plug 'nvim-telescope/telescope.nvim' " Fuzzy Search File
-        Plug 'nvim-lua/popup.nvim'           " Required by Harpoon
-        Plug 'ThePrimeagen/harpoon'          " Shortcut to specific file and line
+        Plug 'nvim-lua/plenary.nvim'                                 " Telescope & Harpoon prerequisite
+        Plug 'nvim-telescope/telescope.nvim'                         " Fuzzy Search File
+        Plug 'nvim-lua/popup.nvim'                                   " Harpoon prerequisite
+        Plug 'ThePrimeagen/harpoon'                                  " Shortcut to specific file and line
 
         """ Cosmetic
         Plug 'nvim-treesitter/nvim-treesitter', {'do': ':TSUpdate'}  " Language Syntax Highlight
         Plug 'nvim-treesitter/nvim-treesitter-context'               " Sticky the function name at the top when scroll
-        Plug 'flazz/vim-colorschemes'        " Color highlight theme
-        Plug 'vim-airline/vim-airline'       " Status line at the bottom
-        Plug 'ryanoasis/vim-devicons'        " Display the icon (should be loaded at last)
+        Plug 'flazz/vim-colorschemes'                                " Color highlight theme
+        Plug 'vim-airline/vim-airline'                               " Status line at the bottom
+        Plug 'ryanoasis/vim-devicons'                                " Display the icon (should be loaded at last)
+
     call plug#end()
 
+   :luafile $HOME/.config/nvim/lua/plugins/nvim-treesitter.lua
+   :luafile $HOME/.config/nvim/lua/plugins/nvim-lspconfig.lua
+   :luafile $HOME/.config/nvim/lua/plugins/cmp.lua
 
-""" Plugin Config
+    " Plugin Config
     let mapleader=" "                         " Leader is a comma
     let NERDTreeMapActivateNode='<space>'
     let NERDTreeShowHidden=1
@@ -42,18 +48,10 @@ syntax on                                 " Turn on syntax highlighting
     let NERDTreeMinimalUI=1
     let NERDTreeDirArrows=1
 
-""" Syntax highlighting
-    let g:go_highlight_fields=1
-    let g:go_highlight_functions=1
-    let g:go_highlight_function_calls=1
-    let g:go_highlight_extra_types=1
-    let g:go_highlight_operators=1
-    let g:completion_matching_strategy_list=['exact', 'substring', 'fuzzy']
-
 
     " Auto formatting and importing
-    let g:go_fmt_autosave=1
-    let g:go_fmt_command="goimports"
+    " let g:go_fmt_autosave=1
+    " let g:go_fmt_command="goimports"
 
 
     " Status line types/signatures
@@ -61,15 +59,9 @@ syntax on                                 " Turn on syntax highlighting
     let g:go_doc_popup_window=1
 
 
-""" Highlight
-    hi Search ctermbg=DarkGrey
-    hi Search ctermfg=Blue
-    hi SpellCap ctermfg=235 guifg=grey70
-    hi SpellBad ctermfg=235 guifg=grey70
-
-
 """ Color scheme (terminal)
-    colorscheme Monokai
+    colorscheme OceanicNext
+    highlight Normal guibg=none
 
 
 """ Set Style """
@@ -83,15 +75,18 @@ syntax on                                 " Turn on syntax highlighting
     set number relativenumber                 " Show line numbers
     set ruler                                 " Show file stats
     set showcmd                               " Show command in bottom bar
-    set cursorline                            " Highlight current line
+    set wildmode=longest,list,full
     set wildmenu                              " Visual autocomplete for command menu
     set showmatch                             " Highlight matching [{()}]
-    set visualbell                            " Blink cursor on error instead of beeping (grr)
+    set noerrorbells
     set encoding=utf-8
     set nowrap
-    set textwidth=120
     set formatoptions=tcqrn1
-    set guifont=Font_Awesome_6_Brands:h11
+    set nohlsearch
+    " set cmdheight=2
+    set signcolumn=yes                        " Leave front space for error, +, - sign
+    set colorcolumn=120                       " Show the vertical line of nth column
+    set completeopt=menu,menuone,noselect
 
 
 """ SPACES & TABS CONFIGURATION
@@ -112,7 +107,7 @@ syntax on                                 " Turn on syntax highlighting
 
 
 """ CURSOR MOTION
-    set scrolloff=3                           " The number of lines display above and below the cursor
+    set scrolloff=8                           " The number of lines display above and below the cursor
     set backspace=indent,eol,start            " The behavior of pressing the backspace key
 
 
@@ -123,7 +118,11 @@ syntax on                                 " Turn on syntax highlighting
     set incsearch                             " Search as characters are entered
     set hlsearch                              " Highlight matches the search
     set ignorecase
-    set smartcase
+    set noswapfile
+    set nobackup
+    set undodir=$HOME/.local/share/nvim/undodir
+    set undofile
+    set updatetime=50
     set spell
     set spelllang=en_us
     set autoread
@@ -135,18 +134,20 @@ syntax on                                 " Turn on syntax highlighting
     set listchars=tab:▸\ ,eol:↲,space:·,trail:·
 
 
-
 """ Key Mapping
     " TAB / REVERSE TAB
-    "noremap <Tab> >>
-    "nnoremap <S-Tab> <<
+
+    " temporary disable due to CTRL-I and TAB produces exactly the same signal
+    " I need to use CTRL-I and CTRL-O to jump between files
+    " nnoremap <c-i> <Tab>
+    " nnoremap <Tab> >>
+    " nnoremap <S-Tab> <<
+    nnoremap <leader><Tab> gt
+    nnoremap <leader><S-Tab> gT
 
     " SEARCHING
-    nnoremap / /\v
-    vnoremap / /\v
-    nnoremap ? ?\v
-    vnoremap ? ?\v
-    nnoremap <silent> <ESC> :nohl<CR>
+    nnoremap <silent> <ESC> :noh<CR>
+    nnoremap <silent> <leader>ps <cmd>lua require('telescope.builtin').grep_string({ search = vim.fn.input("Grep for >")})<CR>
     nnoremap <silent> <leader>ff <cmd>Telescope find_files prompt_prefix=🔍<CR>
     nnoremap <silent> <leader>fg <cmd>Telescope live_grep prompt_prefix=🔍<CR>
     nnoremap <silent> <leader>fb <cmd>Telescope buffers prompt_prefix=🔍<CR>
@@ -160,33 +161,49 @@ syntax on                                 " Turn on syntax highlighting
     nnoremap <silent> <F12> <cmd>set list!<CR>
     inoremap <silent> <F12> <cmd>set list!<CR>
     vnoremap <silent> <F12> <cmd>set list!<CR>
+    nnoremap <silent> <c-h> <c-w>h
+    nnoremap <silent> <c-j> <c-w>j
+    nnoremap <silent> <c-k> <c-w>k
+    nnoremap <silent> <c-l> <c-w>l
 
     " PROJECT STRUCTURE
     nnoremap <silent> <leader>. <cmd>NERDTreeToggle<CR>
-    nnoremap <silent> <leader>v <cmd>NERDTreeFind<CR>
+    nnoremap <silent> <leader>, <cmd>NERDTreeFind<CR>
 
     " OTHERS
-    nnoremap <silent> oo O<ESC>j
+    nnoremap <silent> <leader>o O<ESC>j
+    vnoremap J :m '>+1<CR>V                " Line swap forward
+    vnoremap K :m '<-2<CR>V                " Swap backward
 
     " LSP Config
-    nnoremap <leader>vd <cmd>lua vim.lsp.buf.definition()<CR>
-    nnoremap <leader>vi <cmd>lua vim.lsp.buf.implementation()<CR>
-    nnoremap <leader>vsh <cmd>lua vim.lsp.buf.signature_help()<CR>
-    nnoremap <leader>vrr <cmd>lua vim.lsp.buf.references()<CR>
-    nnoremap <leader>vrn <cmd>lua vim.lsp.buf.rename()<CR>
-    nnoremap <leader>vh <cmd>lua vim.lsp.buf.hover()<CR>
-    nnoremap <leader>vca <cmd>lua vim.lsp.buf.code_action()<CR>
-    nnoremap <leader>vsd <cmd>lua vim.lsp.diagnostic.show_line_diagnostic()<CR>
-    nnoremap <leader>vn <cmd>lua vim.lsp.buf.goto_next()<CR>
+    nnoremap <leader>gd <cmd>lua vim.lsp.buf.definition()<CR>
+    nnoremap <leader>gi <cmd>lua vim.lsp.buf.implementation()<CR>
+    nnoremap <leader>gsh <cmd>lua vim.lsp.buf.signature_help()<CR>
+    nnoremap <leader>grr <cmd>lua vim.lsp.buf.references()<CR>
+    nnoremap <leader>grn <cmd>lua vim.lsp.buf.rename()<CR>
+    nnoremap <leader>gh <cmd>lua vim.lsp.buf.hover()<CR>
+    nnoremap <leader>gca <cmd>lua vim.lsp.buf.code_action()<CR>
+    nnoremap <leader>gsd <cmd>lua vim.lsp.diagnostic.show_line_diagnostic()<CR>
+    nnoremap <leader>gn <cmd>lua vim.lsp.buf.goto_next()<CR>
 
 
 """ Specific Command
 
+    fun! TrimWhiteSpace()
+        let l:save = winsaveview()
+        keeppatterns %s/\s\+$//e
+        call winrestview(l:save)
+    endfun
+
+    augroup TRIM_WHITE_SPACE_ON_SAVE
+        " Delete all previous listener (of this group) to prevent the repetitive execution
+        " then register a new BufWritePre
+        autocmd!
+        autocmd BufWritePre * :call TrimWhiteSpace()
+    augroup END
+
     " Golang
-    autocmd BufWritePre * :%s/\s\+$//e
-    autocmd FileType go nmap <leader>b <cmd>GoDef<CR>
-    autocmd FileType go nmap <S-R> <cmd>GoRename<CR>
-    autocmd FileType go source $HOME/.local/share/nvim/snippet/go/go.nvim
+    autocmd BufWritePre *.go lua vim.lsp.buf.code_action()
+    "autocmd BufWritePre *.go lua vim.lsp.buf.formatting_sync()
 
     " Java
-    autocmd Filetype java source $HOME/.local/share/nvim/snippet/java/java.nvim
