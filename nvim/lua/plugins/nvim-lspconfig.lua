@@ -32,6 +32,10 @@ lspconfig['html'].setup { flags = lsp_flags, }
 lspconfig['jdtls'].setup {
     flags = lsp_flags,
     cmd = {
+        "codeLens.enable=true",
+        "java.referenceCodeLens.enabled=true",
+        "java.completion.enabled=true",
+
         "java.implementationsCodeLens.enabled=true",
         "java.jdt.ls.java.home=$JAVA_HOME",
         "java.signatureHelp.enabled=true",
@@ -44,6 +48,7 @@ lspconfig['jdtls'].setup {
         "java.maven.updateSnapshots=true",
         "java.saveActions.organizeImports=true",
         "java.symbols.includeSourceMethodDeclarations=true",
+        "java.format.settings.url=$HOME/.config/nvim/format/java_format.xml",
     },
 }
 lspconfig['jsonls'].setup { flags = lsp_flags, }
