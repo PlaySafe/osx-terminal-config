@@ -49,16 +49,6 @@ syntax on                                 " Turn on syntax highlighting
     let NERDTreeDirArrows=1
 
 
-    " Auto formatting and importing
-    " let g:go_fmt_autosave=1
-    " let g:go_fmt_command="goimports"
-
-
-    " Status line types/signatures
-    let g:go_auto_type_info=1
-    let g:go_doc_popup_window=1
-
-
 """ Color scheme (terminal)
     colorscheme OceanicNext
     highlight Normal guibg=none
@@ -189,12 +179,14 @@ syntax on                                 " Turn on syntax highlighting
 
 """ Specific Command
 
+    " List of functions
     fun! TrimWhiteSpace()
         let l:save = winsaveview()
         keeppatterns %s/\s\+$//e
         call winrestview(l:save)
     endfun
 
+    " Apply all files
     augroup TRIM_WHITE_SPACE_ON_SAVE
         " Delete all previous listener (of this group) to prevent the repetitive execution
         " then register a new BufWritePre
@@ -203,7 +195,11 @@ syntax on                                 " Turn on syntax highlighting
     augroup END
 
     " Golang
-    autocmd BufWritePre *.go lua vim.lsp.buf.code_action()
-    "autocmd BufWritePre *.go lua vim.lsp.buf.formatting_sync()
+    augroup FORMAT_GOLANG_CODE
+        " Delete all previous listener (of this group) to prevent the repetitive execution
+        " then execute the goimports command
+        autocmd!
+        autocmd BufWritePre *.go : :%!goimports
+    augroup END
 
     " Java

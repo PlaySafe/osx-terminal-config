@@ -15,7 +15,19 @@ lspconfig['cssmodules_ls'].setup { flags = lsp_flags, }
 lspconfig['cucumber_language_server'].setup { flags = lsp_flags, }
 lspconfig['dockerls'].setup { flags = lsp_flags, }
 lspconfig['golangci_lint_ls'].setup { flags = lsp_flags, }
-lspconfig['gopls'].setup { flags = lsp_flags, }
+lspconfig['gopls'].setup {
+    flags = lsp_flags,
+    settings = {
+        gopls = {
+            experimentalPostfixCompletions = true,
+            analyses = {
+                unusedparams = true,
+                shadow = true,
+            },
+            staticcheck = true,
+        },
+    },
+}
 lspconfig['html'].setup { flags = lsp_flags, }
 lspconfig['jdtls'].setup {
     flags = lsp_flags,
