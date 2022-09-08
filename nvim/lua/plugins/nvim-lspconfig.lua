@@ -1,4 +1,7 @@
-require("nvim-lsp-installer").setup {}
+require("nvim-lsp-installer").setup {
+    ensure_installed = { "jdtls@1.11.0-202205051421" },
+    automatic_installation = { exclude = { "jdtls" } }
+}
 local lsp_flags = {
     -- This is the default in Nvim 0.7+
     debounce_text_changes = 100,
@@ -14,7 +17,23 @@ lspconfig['dockerls'].setup { flags = lsp_flags, }
 lspconfig['golangci_lint_ls'].setup { flags = lsp_flags, }
 lspconfig['gopls'].setup { flags = lsp_flags, }
 lspconfig['html'].setup { flags = lsp_flags, }
-lspconfig['jdtls'].setup { flags = lsp_flags, }
+lspconfig['jdtls'].setup {
+    flags = lsp_flags,
+    cmd = {
+        "java.implementationsCodeLens.enabled=true",
+        "java.jdt.ls.java.home=$JAVA_HOME",
+        "java.signatureHelp.enabled=true",
+        "java.signatureHelp.description.enabled=true",
+        "java.configuration.maven.globalSettings=$HOME/.m2/settings.xml",
+        "java.configuration.maven.userSettings=$HOME/.m2/settings.xml",
+        "java.home=$JAVA_HOME",
+        "java.import.maven.offline.enabled=true",
+        "java.maven.downloadSources=true",
+        "java.maven.updateSnapshots=true",
+        "java.saveActions.organizeImports=true",
+        "java.symbols.includeSourceMethodDeclarations=true",
+    },
+}
 lspconfig['jsonls'].setup { flags = lsp_flags, }
 lspconfig['pyright'].setup { flags = lsp_flags, }
 lspconfig['remark_ls'].setup { flags = lsp_flags, }
