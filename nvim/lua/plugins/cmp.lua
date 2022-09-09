@@ -10,7 +10,7 @@ cmp.setup({
             -- vim.fn["UltiSnips#Anon"](args.body) -- For `ultisnips` users.
         end,
     },
-    -- preselect = cmp.PreselectMode.None,
+    preselect = cmp.PreselectMode.None,
     window = {
         -- completion = cmp.config.window.bordered(),
         -- documentation = cmp.config.window.bordered(),
