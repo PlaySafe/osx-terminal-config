@@ -16,8 +16,7 @@ syntax on                                 " Turn on syntax highlighting
         Plug 'hrsh7th/cmp-buffer'
         Plug 'hrsh7th/cmp-path'
         Plug 'hrsh7th/cmp-cmdline'
-        Plug 'hrsh7th/cmp-vsnip'
-        Plug 'hrsh7th/vim-vsnip'
+        Plug 'SirVer/ultisnips' | Plug 'honza/vim-snippets'
         Plug 'tpope/vim-commentary'                                  " Normal mode commenting (gcc & gc)
 
         """ File searching Plugins
@@ -48,7 +47,10 @@ syntax on                                 " Turn on syntax highlighting
     let NERDTreeQuitOnOpen=1
     let NERDTreeMinimalUI=1
     let NERDTreeDirArrows=1
-
+    let g:UltiSnipsExpandTrigger="<CR>"
+    let g:UltiSnipsJumpForwardTrigger="<C-j>"
+    let g:UltiSnipsJumpBackwardTrigger="<C-k>"
+    let g:UltiSnipsEditSplit="vertical"
 
 """ Color scheme (terminal)
     colorscheme gruvbox
