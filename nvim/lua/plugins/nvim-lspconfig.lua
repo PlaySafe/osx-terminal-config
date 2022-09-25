@@ -44,6 +44,7 @@ local lsp_flags = {
 -- Set up lspconfig.
 local capabilities = require('cmp_nvim_lsp').update_capabilities(vim.lsp.protocol.make_client_capabilities())
 
+local dap = require('dap')
 local lspconfig = require('lspconfig')
 lspconfig['ansiblels'].setup {
     flags = lsp_flags,
@@ -146,6 +147,28 @@ lspconfig['jdtls'].setup {
         ["java.symbols.includeSourceMethodDeclarations"] = true,
     },
 }
+dap["adapters"]["java"] = function(callback)
+    callback({
+        type = "server",
+        host = "127.0.0.1",
+        port = "1044",
+    })
+end
+dap["configurations"]["java"] = {
+    {
+        type = "java",
+        request = "attach",
+        name = "Debug (Attach) - Remote",
+        hostName = "127.0.0.1",
+        port = "5005",
+    },
+}
+vim.fn.sign_define("DapBreakpoint",          {text="", texthl="Red",    linehl="NONE", numhl="NONE", culhl="NONE"})
+vim.fn.sign_define("DapBreakpointCondition", {text="", texthl="Yellow", linehl="NONE", numhl="NONE", culhl="NONE"})
+vim.fn.sign_define("DapLogPoint",            {text="", texthl="White",  linehl="NONE", numhl="NONE", culhl="NONE"})
+vim.fn.sign_define("DapStopped",             {text="", texthl="Blue",   linehl="NONE", numhl="NONE", culhl="NONE"})
+vim.fn.sign_define("DapBreakpointRejected",  {text="", texthl="Grey",   linehl="NONE", numhl="NONE", culhl="NONE"})
+
 
 lspconfig['jsonls'].setup {
     flags = lsp_flags,

@@ -18,6 +18,7 @@ syntax on                                 " Turn on syntax highlighting
         Plug 'hrsh7th/cmp-cmdline'
         Plug 'SirVer/ultisnips' | Plug 'honza/vim-snippets'
         Plug 'tpope/vim-commentary'                                  " Normal mode commenting (gcc & gc)
+        Plug 'mfussenegger/nvim-dap'                                 " Debug Adapter Protocol
 
         """ File searching Plugins
         Plug 'nvim-lua/plenary.nvim'                                 " Telescope & Harpoon prerequisite
@@ -178,6 +179,14 @@ syntax on                                 " Turn on syntax highlighting
     nnoremap <leader>gsd <cmd>lua vim.lsp.diagnostic.show_line_diagnostic()<CR>
     nnoremap <leader>gn <cmd>lua vim.lsp.buf.goto_next()<CR>
 
+    " DAP (Debug Adapter Protocol)
+    nnoremap <silent>  <F5> <cmd>lua require('dap').clear_breakpoints()<CR>
+    nnoremap <silent>  <F6> <cmd>lua require('dap').toggle_breakpoint()<CR>
+    nnoremap <silent>  <F7> <cmd>lua require('dap').step_into()<CR>
+    nnoremap <silent>  <F8> <cmd>lua require('dap').step_over()<CR>
+    nnoremap <silent>  <F9> <cmd>lua require('dap').repl.open()<CR>
+    nnoremap <silent> <F10> <cmd>lua require('dap').continue()<CR>
+
 
 """ Specific Command
 
@@ -204,4 +213,5 @@ syntax on                                 " Turn on syntax highlighting
         autocmd BufWritePre *.go : :%!goimports
     augroup END
 
-    " Java
+    " Debug
+    autocmd FileType dap-repl lua require('dap.ext.autocompl').attach()
