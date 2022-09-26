@@ -121,6 +121,7 @@ syntax on                                 " Turn on syntax highlighting
     set autoread
     set history=200
     set path+=**
+    set clipboard^=unnamed,unnamedplus
 
 
 """ Visualize tabs and newlines
