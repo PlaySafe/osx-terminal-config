@@ -129,13 +129,6 @@ syntax on                                 " Turn on syntax highlighting
 
 
 """ Key Mapping
-    " TAB / REVERSE TAB
-
-    " temporary disable due to CTRL-I and TAB produces exactly the same signal
-    " I need to use CTRL-I and CTRL-O to jump between files
-    " nnoremap <c-i> <Tab>
-    " nnoremap <Tab> >>
-    " nnoremap <S-Tab> <<
     nnoremap <leader><Tab> gt
     nnoremap <leader><S-Tab> gT
 
@@ -188,6 +181,8 @@ syntax on                                 " Turn on syntax highlighting
     nnoremap <silent>  <F9> <cmd>lua require('dap').repl.open()<CR>
     nnoremap <silent> <F10> <cmd>lua require('dap').continue()<CR>
 
+    nnoremap <silent> <leader>fo <cmd>foldopen<CR>
+    nnoremap <silent> <leader>fc <cmd>foldclose<CR>
 
 """ Specific Command
 
