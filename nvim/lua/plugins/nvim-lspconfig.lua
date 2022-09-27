@@ -109,6 +109,12 @@ lspconfig['gopls'].setup {
     },
 }
 
+lspconfig['groovyls'].setup {
+    flags = lsp_flags,
+    on_attach = on_attach,
+    capabilities = capabilities,
+}
+
 lspconfig['html'].setup {
     flags = lsp_flags,
     on_attach = on_attach,
@@ -177,12 +183,6 @@ lspconfig['jsonls'].setup {
 }
 
 lspconfig['pyright'].setup {
-    flags = lsp_flags,
-    on_attach = on_attach,
-    capabilities = capabilities,
-}
-
-lspconfig['remark_ls'].setup {
     flags = lsp_flags,
     on_attach = on_attach,
     capabilities = capabilities,
