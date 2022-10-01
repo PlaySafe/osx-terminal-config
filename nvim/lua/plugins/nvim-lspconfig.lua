@@ -235,6 +235,26 @@ lspconfig['yamlls'].setup {
     flags = lsp_flags,
     on_attach = on_attach,
     capabilities = capabilities,
+    cmd = {
+        "yaml-language-server",
+        "--stdio"
+    },
+    settings = {
+        redhat = {
+            telemetry = {
+                enabled = false
+            }
+        },
+        yaml = {
+            schemas = {
+                ["https://raw.githubusercontent.com/instrumenta/kubernetes-json-schema/master/v1.18.0-standalone-strict/all.json"] = "/*.k8s.yaml",
+            }
+        }
+    },
+    filetypes = {
+        "yaml",
+        "yaml.docker-compose",
+    }
 }
 
 lspconfig['zk'].setup {
