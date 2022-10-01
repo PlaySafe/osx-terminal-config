@@ -33,6 +33,8 @@ syntax on                                 " Turn on syntax highlighting
         Plug 'vim-airline/vim-airline'                               " Status line at the bottom
         Plug 'ryanoasis/vim-devicons'                                " Display the icon (should be loaded at last)
 
+        """ Others
+        " Plug 'lervag/vimtex'                                         " syntax plugin for LaText files (https://castel.dev/post/lecture-notes-1/)
     call plug#end()
 
    :luafile $HOME/.config/nvim/lua/plugins/nvim-treesitter.lua
