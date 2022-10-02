@@ -1,6 +1,13 @@
 require("nvim-lsp-installer").setup {
     ensure_installed = { "jdtls@1.11.0-202205051421" },
-    automatic_installation = { exclude = { "jdtls" } }
+    automatic_installation = { exclude = { "jdtls" } },
+    ui = {
+        icons = {
+            server_installed = "",
+            server_pending = "",
+            server_uninstalled = "",
+        }
+    }
 }
 
 -- See `:help vim.diagnostic.*` for documentation on any of the below functions
