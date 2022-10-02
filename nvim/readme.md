@@ -1,13 +1,16 @@
-To Install Required Language Run
+Run `:checkhealth` to verify all statuses
 
-Tree-Sitter
+Install Required Language using Tree-Sitter
 Run `:TSInstallInfo` to list languages
 Run `:TSInstall <lang>`
 
 LSP
-Run `LspInstallInfo` then use key `i` to install the language server
+Run `:LspInstallInfo` then use key `i` to install the language server
 
-Java
+Telescope Dependency
+Run `:brew install ripgrep`
+
+Java Format Config Value
 +-------------------------------------+
 |         JAVA ALIGNMENT VALUE        |
 +-------------------------------------+

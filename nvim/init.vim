@@ -137,10 +137,10 @@ syntax on                                 " Turn on syntax highlighting
     " SEARCHING
     nnoremap <silent> <ESC> :noh<CR>
     nnoremap <silent> <leader>ps <cmd>lua require('telescope.builtin').grep_string({ search = vim.fn.input("Grep for >")})<CR>
-    nnoremap <silent> <leader>ff <cmd>Telescope find_files prompt_prefix=🔍<CR>
-    nnoremap <silent> <leader>fg <cmd>Telescope live_grep prompt_prefix=🔍<CR>
-    nnoremap <silent> <leader>fb <cmd>Telescope buffers prompt_prefix=🔍<CR>
-    nnoremap <silent> <leader>fh <cmd>Telescope help_tags prompt_prefix=🔍<CR>
+    nnoremap <silent> <leader>ff <cmd>Telescope find_files<CR>
+    nnoremap <silent> <leader>fg <cmd>Telescope live_grep<CR>
+    nnoremap <silent> <leader>fb <cmd>Telescope buffers<CR>
+    nnoremap <silent> <leader>fh <cmd>Telescope help_tags<CR>
     nnoremap <silent> <leader>t <cmd>lua require("harpoon.mark").add_file()<CR>
     nnoremap <silent> <leader>e <cmd>lua require("harpoon.ui").toggle_quick_menu()<CR>
     nnoremap <silent> <leader>r <cmd>lua require("harpoon.ui").nav_next()<CR>
