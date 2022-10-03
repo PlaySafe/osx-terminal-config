@@ -131,6 +131,7 @@ syntax on                                 " Turn on syntax highlighting
 
 
 """ Key Mapping
+    " Vim Tab
     nnoremap <leader><Tab> gt
     nnoremap <leader><S-Tab> gT
 
@@ -163,6 +164,8 @@ syntax on                                 " Turn on syntax highlighting
     nnoremap <silent> <leader>o O<ESC>j
     vnoremap J :m '>+1<CR>V                " Line swap forward
     vnoremap K :m '<-2<CR>V                " Swap backward
+    nnoremap <silent> qw" ciw"<C-r>""<Esc> " Add double quote
+    nnoremap <silent> qw' ciw'<C-r>"'<Esc> " Add single quote
 
     " LSP Config
     nnoremap <leader>gd <cmd>lua vim.lsp.buf.definition()<CR>
