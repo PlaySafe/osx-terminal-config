@@ -40,7 +40,7 @@ local on_attach = function(client, bufnr)
     vim.keymap.set('n', '<space>rn', vim.lsp.buf.rename, bufopts)
     vim.keymap.set('n', '<space>ca', vim.lsp.buf.code_action, bufopts)
     vim.keymap.set('n', 'gr', vim.lsp.buf.references, bufopts)
-    vim.keymap.set('n', '<space>=', vim.lsp.buf.formatting, bufopts)
+    vim.keymap.set('n', '<space>=', vim.lsp.buf.format, bufopts)
 end
 
 local lsp_flags = {
@@ -132,26 +132,19 @@ lspconfig['jdtls'].setup {
     flags = lsp_flags,
     on_attach = on_attach,
     capabilities = capabilities,
-    single_file_support = true,
-    root_dir = lspconfig.util.root_pattern(".git", "pom.xml"),
-    -- cmd = {
-    --     'jdtls',
-    -- },
     settings = {
         ["codeLens.enable"] = true,
         ["java.autobuild.enabled"] = true,
         ["java.completion.enabled"] = true,
-        ["java.configuration.maven.globalSettings"] = vim.fn.expand("$HOME") .. ".m2/settings.xml",
-        ["java.configuration.maven.userSettings"] = vim.fn.expand("$HOME") .. "/.m2/settings.xml",
-        ["java.format.settings.url"] = vim.fn.expand("$HOME") .. "/.config/nvim/format/java_format.xml",
-        ["java.home"] = vim.fn.expand("$JAVA_HOME"),
+        ["java.configuration.maven.globalSettings"] = vim.fs.normalize("$HOME/.m2/settings.xml"),
+        ["java.configuration.maven.userSettings"] = vim.fs.normalize("$HOME/.m2/settings.xml"),
+        ["java.format.settings.url"] = vim.fs.normalize("$HOME/.config/nvim/format/java_format.xml"),
+        ["java.home"] = vim.fs.normalize("$JAVA_HOME"),
         ["java.implementationsCodeLens.enabled"] = true,
-        ["java.import.maven.enabled"] = true,
-        ["java.import.maven.offline.enabled"] = true,
-        ["java.jdt.ls.java.home"] = vim.fn.expand("$JAVA_HOME"),
+        ["java.jdt.ls.java.home"] = vim.fs.normalize("$JAVA_HOME"),
         ["java.maven.downloadSources"] = true,
         ["java.maven.updateSnapshots"] = true,
-        ["java.project.referencedLibraries"] = vim.fn.expand("$HOME") .. "/.m2/repository/**/*.jar",
+        ["java.progressReports.enabled"] = false,
         ["java.referenceCodeLens.enabled"] = true,
         ["java.saveActions.organizeImports"] = true,
         ["java.server.launchMode"] = "Standard",
