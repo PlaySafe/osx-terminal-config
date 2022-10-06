@@ -133,20 +133,19 @@ syntax on                                 " Turn on syntax highlighting
 
 """ Key Mapping
     " Vim Tab
-    nnoremap <leader><Tab> gt
-    nnoremap <leader><S-Tab> gT
+    nnoremap <silent> <leader><Tab> gt
+    nnoremap <silent> <leader><S-Tab> gT
 
     " SEARCHING
     nnoremap <silent> <ESC> :noh<CR>
-    nnoremap <silent> <leader>ps <cmd>lua require('telescope.builtin').grep_string({ search = vim.fn.input("Grep for >")})<CR>
-    nnoremap <silent> <leader>ff <cmd>Telescope find_files<CR>
-    nnoremap <silent> <leader>fg <cmd>Telescope live_grep<CR>
+    nnoremap <silent> <leader>O <cmd>Telescope find_files<CR>
+    nnoremap <silent> <leader>F <cmd>Telescope live_grep<CR>
     nnoremap <silent> <leader>fb <cmd>Telescope buffers<CR>
-    nnoremap <silent> <leader>fh <cmd>Telescope help_tags<CR>
-    nnoremap <silent> <leader>t <cmd>lua require("harpoon.mark").add_file()<CR>
-    nnoremap <silent> <leader>e <cmd>lua require("harpoon.ui").toggle_quick_menu()<CR>
-    nnoremap <silent> <leader>r <cmd>lua require("harpoon.ui").nav_next()<CR>
-    nnoremap <silent> <leader>w <cmd>lua require("harpoon.ui").nav_prev()<CR>
+    nnoremap <silent> <leader>? <cmd>Telescope help_tags<CR>
+    " nnoremap <silent> <leader>t <cmd>lua require("harpoon.mark").add_file()<CR>
+    " nnoremap <silent> <leader>e <cmd>lua require("harpoon.ui").toggle_quick_menu()<CR>
+    " nnoremap <silent> <leader>r <cmd>lua require("harpoon.ui").nav_next()<CR>
+    " nnoremap <silent> <leader>w <cmd>lua require("harpoon.ui").nav_prev()<CR>
 
     " VISUALIZE TABS AND NEWLINES
     nnoremap <silent> <F12> <cmd>set list!<CR>
@@ -160,6 +159,8 @@ syntax on                                 " Turn on syntax highlighting
     " PROJECT STRUCTURE
     nnoremap <silent> <leader>. <cmd>NERDTreeToggle<CR>
     nnoremap <silent> <leader>, <cmd>NERDTreeFind<CR>
+    nnoremap <silent> <leader>+ <cmd>foldopen<CR>
+    nnoremap <silent> <leader>- <cmd>foldclose<CR>
 
     " OTHERS
     nnoremap <silent> <leader>o O<ESC>j
@@ -167,17 +168,18 @@ syntax on                                 " Turn on syntax highlighting
     vnoremap K :m '<-2<CR>V                " Swap backward
     nnoremap <silent> qw" ciw"<C-r>""<Esc> " Add double quote
     nnoremap <silent> qw' ciw'<C-r>"'<Esc> " Add single quote
+    nnoremap <leader>w <cmd>bd<CR>         " Close current buffer
 
     " LSP Config
-    nnoremap <leader>gd <cmd>lua vim.lsp.buf.definition()<CR>
-    nnoremap <leader>gi <cmd>lua vim.lsp.buf.implementation()<CR>
-    nnoremap <leader>gsh <cmd>lua vim.lsp.buf.signature_help()<CR>
-    nnoremap <leader>grr <cmd>lua vim.lsp.buf.references()<CR>
-    nnoremap <leader>grn <cmd>lua vim.lsp.buf.rename()<CR>
-    nnoremap <leader>gh <cmd>lua vim.lsp.buf.hover()<CR>
-    nnoremap <leader>gca <cmd>lua vim.lsp.buf.code_action()<CR>
-    nnoremap <leader>gsd <cmd>lua vim.lsp.diagnostic.show_line_diagnostic()<CR>
-    nnoremap <leader>gn <cmd>lua vim.lsp.buf.goto_next()<CR>
+    nnoremap <silent> <leader>gd <cmd>lua vim.lsp.buf.definition()<CR>
+    nnoremap <silent> <leader>gi <cmd>lua vim.lsp.buf.implementation()<CR>
+    nnoremap <silent> <leader>gsh <cmd>lua vim.lsp.buf.signature_help()<CR>
+    nnoremap <silent> <leader>grr <cmd>lua vim.lsp.buf.references()<CR>
+    nnoremap <silent> <leader>grn <cmd>lua vim.lsp.buf.rename()<CR>
+    nnoremap <silent> <leader>gh <cmd>lua vim.lsp.buf.hover()<CR>
+    nnoremap <silent> <leader>gca <cmd>lua vim.lsp.buf.code_action()<CR>
+    nnoremap <silent> <leader>gsd <cmd>lua vim.lsp.diagnostic.show_line_diagnostic()<CR>
+    nnoremap <silent> <leader>gn <cmd>lua vim.lsp.buf.goto_next()<CR>
 
     " DAP (Debug Adapter Protocol)
     nnoremap <silent>  <F5> <cmd>lua require('dap').clear_breakpoints()<CR>
@@ -186,9 +188,6 @@ syntax on                                 " Turn on syntax highlighting
     nnoremap <silent>  <F8> <cmd>lua require('dap').step_over()<CR>
     nnoremap <silent>  <F9> <cmd>lua require('dap').repl.open()<CR>
     nnoremap <silent> <F10> <cmd>lua require('dap').continue()<CR>
-
-    nnoremap <silent> <leader>fo <cmd>foldopen<CR>
-    nnoremap <silent> <leader>fc <cmd>foldclose<CR>
 
 """ Specific Command
 
