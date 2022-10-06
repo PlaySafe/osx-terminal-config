@@ -1,6 +1,31 @@
 require("nvim-lsp-installer").setup {
-    ensure_installed = { "jdtls@1.11.0-202205051421" },
-    automatic_installation = { exclude = { "jdtls" } },
+    ensure_installed = {
+        "ansiblels",
+        "bashls",
+        "cmake",
+        "cssls",
+        "cssmodules_ls",
+        "dockerls",
+        "golangci_lint_ls",
+        "gopls",
+        "html",
+        "jdtls",
+        "jsonls",
+        "pyright",
+        "rome",
+        "sqlls",
+        "sqls",
+        "sumneko_lua",
+        "tsserver",
+        "vimls",
+        "yamlls",
+        "zk",
+    },
+    automatic_installation = {
+        exclude = {
+            -- "jdtls"
+        }
+    },
     ui = {
         icons = {
             server_installed = "",
