@@ -9,6 +9,8 @@ Run `:LspInstallInfo` then use key `i` to install the language server
 
 Telescope Dependency
 Run `:brew install ripgrep`
+Run `:brew install python3`
+Run `:python3 -m pip install --user --upgrade pynvim`
 
 Java Format Config Value
 +-------------------------------------+
@@ -33,3 +35,7 @@ Java Format Config Value
 | INDENT_ON_COLUMN            |    1  |
 | INDENT_BY_ONE               |    2  |
 +-------------------------------------+
+
+Java Project
+Run `mvn dependency:resolve`
+Run `mvn eclipse:eclipse`
