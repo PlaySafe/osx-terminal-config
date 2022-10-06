@@ -1,0 +1,20 @@
+#!/bin/sh
+command=$@;
+
+#get the workspace directory
+dir=$(pwd);
+
+#target all folders to apply this bash
+projects=($(ls -d */));
+
+#run the specific command to each project
+for project in "${projects[@]}"
+do
+  echo "--------------------------------------------------------------"
+  echo "Progresssing in project $project";
+  eval "cd $dir/$project; $command";
+  echo "";
+done
+
+eval "cd $dir";
+echo "--------------------------------------------------------------"

@@ -203,15 +203,16 @@ syntax on                                 " Turn on syntax highlighting
         " Delete all previous listener (of this group) to prevent the repetitive execution
         " then register a new BufWritePre
         autocmd!
-        autocmd BufWritePre * :call TrimWhiteSpace()
+        autocmd BufWritePre * silent :call TrimWhiteSpace()
     augroup END
 
     " Golang
     augroup FORMAT_GOLANG_CODE
         " Delete all previous listener (of this group) to prevent the repetitive execution
         " then execute the goimports command
+        " The gofmt will be triggered automatically by goimports, so we don't need to run it again
         autocmd!
-        autocmd BufWritePre *.go : :%!goimports
+        autocmd BufWritePre *.go silent :%!goimports
     augroup END
 
     " Debug

@@ -1,0 +1,18 @@
+#!/bin/sh
+command=$@;
+
+#get the workspace directory
+dir=$(pwd);
+
+#target all folders to apply this bash
+projects=($(ls -d */));
+
+#run the specific command to each project
+for project in "${projects[@]}"
+do
+  osascript \
+  -e "tell application \"Terminal\"" \
+  -e "tell application \"System Events\" to keystoke \"t\" using command down" \
+  -e "do script \"cd $dir/$project; $command\" in front window" \
+  -e "end tell"i
+done
