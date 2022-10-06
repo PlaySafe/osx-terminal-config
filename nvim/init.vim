@@ -50,6 +50,7 @@ syntax on                                 " Turn on syntax highlighting
     let NERDTreeQuitOnOpen=1
     let NERDTreeMinimalUI=1
     let NERDTreeDirArrows=1
+    let g:NERDTreeWinSize=60
     let g:UltiSnipsExpandTrigger="<CR>"
     let g:UltiSnipsJumpForwardTrigger="<C-j>"
     let g:UltiSnipsJumpBackwardTrigger="<C-k>"
