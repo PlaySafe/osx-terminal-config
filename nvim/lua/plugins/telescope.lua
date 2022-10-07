@@ -1,8 +1,26 @@
+local function orientation()
+    if vim.fn.winwidth(0) > 120 then
+        return 'horizontal'
+    else
+        return 'vertical'
+    end
+end
+
 local default_config = {
-    theme = "cursor",
+    layout_strategy = orientation(),
     layout_config = {
-        width = 0.95,
-        height = 0.90,
+        vertical = {
+            width = 0.9,
+            height = 0.9,
+            preview_cutoff = 40,
+            prompt_position = "bottom",
+        },
+        horizontal = {
+            height = 0.9,
+            preview_cutoff = 120,
+            prompt_position = "top",
+            width = 0.9
+        }
     }
 }
 
@@ -10,9 +28,14 @@ require('telescope').setup {
     defaults = {
         -- Default configuration for telescope goes here:
         -- config_key = value,
-        prompt_prefix="🔍",
-        selection_caret="",
-        path_display = { "smart" },
+        prompt_prefix = " 🔍 ",
+        selection_caret = "  ",
+        path_display = {
+            shorten = {
+                len = 2,
+                exclude = {-2, -1}
+            }
+        },
         mappings = {
             i = {
                 -- map actions.which_key to <C-h> (default: <C-/>)
