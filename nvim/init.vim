@@ -190,6 +190,13 @@ syntax on                                 " Turn on syntax highlighting
     nnoremap <silent>  <F9> <cmd>lua require('dap').repl.open()<CR>
     nnoremap <silent> <F10> <cmd>lua require('dap').continue()<CR>
 
+    " Command execution (Run from file)
+    nnoremap <leader>x ^"xY:!<space><C-r>x<CR>
+    nnoremap <leader>X ^"xY:$read!<space><C-r>x<CR>
+    vnoremap <leader>x "xY:!<space><C-r>x<CR>
+    vnoremap <leader>X "xY:$read!<space><C-r>x<CR>
+
+
 """ Specific Command
 
     " List of functions
