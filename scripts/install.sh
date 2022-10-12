@@ -25,6 +25,7 @@ cp ./maven/settings.xml $HOME/.m2
 # script command
 brew install git
 brew install git-gui
+cp ./script/gitconfig/.gitconfig $HOME/.gitconfig
 cp ./bin/run /usr/local/bin
 cp ./bin/asyncrun /usr/local/bin
 

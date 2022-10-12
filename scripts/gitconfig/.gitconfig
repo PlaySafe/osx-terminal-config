@@ -1,0 +1,19 @@
+[user]
+	email = kampanart.saardarewut@prudential.co.th
+	name = Kampanart Saardarewut
+[pull]
+	rebase = true
+[init]
+	defaultBranch = master
+[core]
+	autocrlf = input
+	editor = nvim
+[diff]
+    tool = vimdiff
+[difftool]
+    prompt = false
+[merge]
+    tool = vimdiff
+[mergetool "vimdiff"]
+    keepBackup = false
+    layout = "LOCAL,BASE,REMOTE / MERGED"
