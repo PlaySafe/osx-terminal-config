@@ -105,6 +105,7 @@ syntax on                                 " Turn on syntax highlighting
 """ CURSOR MOTION
     set scrolloff=8                           " The number of lines display above and below the cursor
     set backspace=indent,eol,start            " The behavior of pressing the backspace key
+    set cursorline                            " Display horizontal line of current line
 
 
 " OTHERS
