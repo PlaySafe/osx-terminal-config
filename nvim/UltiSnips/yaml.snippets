@@ -1,0 +1,185 @@
+snippet kpod
+---
+apiVersion: v1
+kind: Pod
+metadata:
+  name: ${1:<string>}
+spec:
+  containers:
+    - name: ${2:<string>}
+      image: ${3:<path string>}
+      resources:
+        requests:
+          cpu: 1Gi
+          memory: 1Gi
+        limits:
+          cpu: 2Gi
+          memory: 2Gi
+      # lifecycle:
+      #   postStart:
+      #     exec:
+      #       command:
+      #         - ls
+      #         - -lah
+      #   preStop:
+      #     httpGet:
+      #     port: 8080
+      #     path: /
+endsnippet
+
+
+snippet kdep
+---
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: ${1:<string>}-deployment
+  labels:
+    app: ${2:<string>}
+spec:
+  replicas: ${3:<integer>}
+  selector:
+    matchLabels:
+      app: $2
+  template:
+    metadata:
+      labels:
+        app: $2
+    spec:
+      containers:
+        - name: ${4:<string>}
+          image: ${5:<string>}
+          ports:
+            - name: http
+              containerPort: 80
+              protocol: TCP
+          env:
+            - name: ${10:<string>}
+              valueFrom:
+                secretKeyRef:
+                  name: ${11:<string>}
+                  key: ${12:<from secret.data>}
+          livenessProbe:
+            tcpSocket:
+              path: /
+              port: ${6:8080}
+            initialDelaySeconds: ${7:60}
+            timeoutSeconds: ${8:10}
+            periodSeconds: ${9:60}
+          readinessProbe:
+            httpGet:
+              port: $6
+            initialDelaySeconds: $7
+            timeoutSeconds: $8
+            periodSeconds: $9
+endsnippet
+
+
+snippet kser
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: ${1:<string>}-service
+spec:
+  selector:
+    app: ${2:<string>}
+  ports:
+    - protocol: TCP
+      port: ${3:80}
+      targetPort: ${4:8080}
+endsnippet
+
+
+snippet ksec
+---
+apiVersion: v1
+kind: Secret
+metadata:
+  name: ${1:<string>}
+type: Opaque
+data:
+  ${2:<name>}: ${3:<based64 value>}
+endsnippet
+
+
+snippet kcfm
+---
+apiVersion: v1
+kind: ConfigMap
+metadata:
+  name: ${1:<string>}
+  namespace: ${4:<string>}
+data:
+  ${2:<key>}: ${3:<string>}
+endsnippet
+
+
+snippet king
+---
+apiVersion: networking.k8s.io/v1beta1
+kind: Ingress
+metadata:
+  name: ${1:<string>}-ingress
+spec:
+  tls:
+    - host:
+	    - ${2}
+		secretName: ${6:<string>}
+  rules:
+    - host: ${2:<string>}
+      http:
+        paths:
+          - path: ${3:/<string>}
+            backend:
+              serviceName: ${4:<string>}
+              servicePort: ${5:8080}
+endsnippet
+
+
+snippet ktls
+---
+apiVersion: v1
+kind: Secret
+metadata:
+  name: ${1:<string>}
+  namespace: ${2:<string>}
+data:
+  tls.crt: ${3:<base64 encode cert (not path)>}
+  tls.key: ${4:<base64 encode key (not path)>}
+type: kubernetes.io/tls
+endsnippet
+
+
+snippet kpv
+---
+apiVersion: v1
+kind: PersistenceVolumn
+metadata:
+  name: ${1:<string>}
+spec:
+  capacity:
+    storage: ${2:<integer>}Gi
+  volumnMode: FileSystem
+  accessModes:
+    - ReadWriteOnce
+  persistenceVolumnReclaimPolicy: Recycle
+  storageClassName: slow
+  mountOptions:
+    - hard
+    - nfsver=4.0
+  nfs:
+    path: ${3:<path string>}
+    server: ${4:<string>}
+endsnippet
+
+
+snippet dk
+services:
+  ${1:name}:
+    image: ${2}
+    ports:
+      - "${3:1234}:${4:1234}"
+    volumns:
+      - ${5}
+endsnippet

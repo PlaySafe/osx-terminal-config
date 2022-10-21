@@ -51,7 +51,7 @@ syntax on                                 " Turn on syntax highlighting
     let NERDTreeMinimalUI=1
     let NERDTreeDirArrows=1
     let g:NERDTreeWinSize=60
-    let g:UltiSnipsExpandTrigger="<CR>"
+    let g:UltiSnipsExpandTrigger="<C-j>"
     let g:UltiSnipsJumpForwardTrigger="<C-j>"
     let g:UltiSnipsJumpBackwardTrigger="<C-k>"
     let g:UltiSnipsEditSplit="vertical"
@@ -227,3 +227,6 @@ syntax on                                 " Turn on syntax highlighting
 
     " Debug
     autocmd FileType dap-repl lua require('dap.ext.autocompl').attach()
+
+    " Config files
+    autocmd BufReadPost,BufNewFile *.yml,*.yaml,*.snippets set cursorcolumn

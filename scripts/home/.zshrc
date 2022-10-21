@@ -26,6 +26,10 @@ alias got="go test"
 alias dk="docker"
 alias dkcp="docker compose"
 
+# Kubernetes
+alias mnk="minikube"
+alias kcl="kubectl"
+
 # Brew alias config
 alias bug="brew upgrade"
 alias bud="brew update"
@@ -55,8 +59,8 @@ autoload -Uz compinit && compinit
 function git_branch() {
     branch=$(git branch --show-current 2> /dev/null)
     if [[ ! -z "$branch" ]] then
-        modify=$(git status -s | wc -l | xargs 2> /dev/null)
-        echo " [$branch($modify)]"
+        # modify=$(git status -s | wc -l | xargs 2> /dev/null)
+        echo "  $branch"
     fi
 }
 
@@ -65,5 +69,5 @@ COLOR_USR=$'\e[38;5;243m'
 COLOR_DIR=$'\e[38;5;197m'
 COLOR_GIT=$'\e[38;5;39m'
 setopt PROMPT_SUBST
-export PROMPT='MacOS @ ${COLOR_DIR}%.${COLOR_GIT}$(git_branch)${COLOR_DEF} $ '
+export PROMPT=' ${COLOR_DIR}%.${COLOR_GIT}$(git_branch)${COLOR_DEF}  '
 
