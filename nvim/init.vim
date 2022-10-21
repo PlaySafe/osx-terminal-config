@@ -143,11 +143,12 @@ syntax on                                 " Turn on syntax highlighting
     nnoremap <silent> <leader>F <cmd>Telescope live_grep<CR>
     nnoremap <silent> <leader>fb <cmd>Telescope buffers<CR>
     nnoremap <silent> <leader>? <cmd>Telescope help_tags<CR>
-    nnoremap <silent> <leader>e <cmd>Telescope marks<CR>
-    " nnoremap <silent> <leader>t <cmd>lua require("harpoon.mark").add_file()<CR>
-    " nnoremap <silent> <leader>e <cmd>lua require("harpoon.ui").toggle_quick_menu()<CR>
-    " nnoremap <silent> <leader>r <cmd>lua require("harpoon.ui").nav_next()<CR>
-    " nnoremap <silent> <leader>w <cmd>lua require("harpoon.ui").nav_prev()<CR>
+    nnoremap <silent> <leader>m <cmd>Telescope marks<CR>
+    nnoremap <silent> <leader>j <cmd>Telescope jumplist<CR>
+    nnoremap <silent> <leader>t <cmd>lua require("harpoon.mark").add_file()<CR>
+    nnoremap <silent> <leader>e <cmd>lua require("harpoon.ui").toggle_quick_menu()<CR>
+    nnoremap <silent> <leader>r <cmd>lua require("harpoon.ui").nav_next()<CR>
+    nnoremap <silent> <leader>R <cmd>lua require("harpoon.ui").nav_prev()<CR>
 
     " VISUALIZE TABS AND NEWLINES
     nnoremap <silent> <F12> <cmd>set list!<CR>
