@@ -39,5 +39,4 @@ go install golang.org/x/tools/cmd/goimports@latest
 brew install python3
 python3 -m pip install --user --upgrade pynvim
 
-
-
+brew install jq
