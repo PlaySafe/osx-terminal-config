@@ -40,3 +40,4 @@ brew install python3
 python3 -m pip install --user --upgrade pynvim
 
 brew install jq
+brew install tflint

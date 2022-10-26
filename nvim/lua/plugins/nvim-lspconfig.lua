@@ -16,6 +16,7 @@ require("nvim-lsp-installer").setup {
         "sqlls",
         "sqls",
         "sumneko_lua",
+        "terraformls",
         "tsserver",
         "vimls",
         "yamlls",
@@ -244,6 +245,12 @@ lspconfig['sumneko_lua'].setup {
     },
 }
 
+lspconfig['terraformls'].setup {
+    flags = lsp_flags,
+    on_attach = on_attach,
+    capabilities = capabilities,
+}
+
 lspconfig['tsserver'].setup {
     flags = lsp_flags,
     on_attach = on_attach,
@@ -287,3 +294,4 @@ lspconfig['zk'].setup {
     on_attach = on_attach,
     capabilities = capabilities,
 }
+
