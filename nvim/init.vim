@@ -158,6 +158,10 @@ syntax on                                 " Turn on syntax highlighting
     nnoremap <silent> <c-j> <c-w>j
     nnoremap <silent> <c-k> <c-w>k
     nnoremap <silent> <c-l> <c-w>l
+    nnoremap <silent> <leader><Right> <cmd>vertical resize +10<CR>
+    nnoremap <silent> <leader><Left> <cmd>vertical resize -10<CR>
+    nnoremap <silent> <leader><Up> <cmd>resize -10<CR>
+    nnoremap <silent> <leader><Down> <cmd>resize +10<CR>
 
     " PROJECT STRUCTURE
     nnoremap <silent> <leader>. <cmd>NERDTreeToggle<CR>

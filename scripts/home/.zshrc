@@ -22,6 +22,8 @@ alias gob="go build"
 alias gor="go run"
 alias got="go test"
 
+alias ff="find . -iname"
+
 # Docker alias config
 alias dk="docker"
 alias dkcp="docker compose"
