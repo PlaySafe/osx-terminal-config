@@ -8,7 +8,6 @@ syntax on                                 " Turn on syntax highlighting
     call plug#begin()
 
         """ Main plugin for working
-        Plug 'scrooloose/nerdtree'                                   " Display folder in tree structure
         Plug 'neovim/nvim-lspconfig'                                 " LSP for languages
         Plug 'williamboman/nvim-lsp-installer'                       " Provide LSP command, easy to install
         Plug 'hrsh7th/nvim-cmp'                                      " Intellisense
@@ -22,7 +21,7 @@ syntax on                                 " Turn on syntax highlighting
 
         """ File searching Plugins
         Plug 'nvim-lua/plenary.nvim'                                 " Telescope & Harpoon prerequisite
-        Plug 'nvim-telescope/telescope.nvim'                         " Fuzzy Search File
+        Plug 'nvim-telescope/telescope.nvim' | Plug 'nvim-telescope/telescope-file-browser.nvim' " Fuzzy Search File
         Plug 'nvim-lua/popup.nvim'                                   " Harpoon prerequisite
         Plug 'ThePrimeagen/harpoon'                                  " Shortcut to specific file and line
 
@@ -44,13 +43,6 @@ syntax on                                 " Turn on syntax highlighting
 
     " Plugin Config
     let mapleader=" "                         " Leader is a comma
-    let NERDTreeMapActivateNode='<space>'
-    let NERDTreeShowHidden=1
-    let NERDTreeAutoDeleteBuffer=1
-    let NERDTreeQuitOnOpen=1
-    let NERDTreeMinimalUI=1
-    let NERDTreeDirArrows=1
-    let g:NERDTreeWinSize=60
     let g:UltiSnipsExpandTrigger="<C-j>"
     let g:UltiSnipsJumpForwardTrigger="<C-j>"
     let g:UltiSnipsJumpBackwardTrigger="<C-k>"
@@ -139,16 +131,18 @@ syntax on                                 " Turn on syntax highlighting
 
     " SEARCHING
     nnoremap <silent> <ESC> :noh<CR>
-    nnoremap <silent> <leader>O <cmd>Telescope find_files<CR>
+    nnoremap <silent> <leader>. <cmd>Telescope file_browser<CR>
+    nnoremap <silent> <leader>, <cmd>Telescope find_files<CR>
     nnoremap <silent> <leader>F <cmd>Telescope live_grep<CR>
     nnoremap <silent> <leader>fb <cmd>Telescope buffers<CR>
     nnoremap <silent> <leader>? <cmd>Telescope help_tags<CR>
     nnoremap <silent> <leader>m <cmd>Telescope marks<CR>
     nnoremap <silent> <leader>j <cmd>Telescope jumplist<CR>
+    nnoremap <silent> <leader>R <cmd>Telescope registers<CR>
     nnoremap <silent> <leader>t <cmd>lua require("harpoon.mark").add_file()<CR>
     nnoremap <silent> <leader>e <cmd>lua require("harpoon.ui").toggle_quick_menu()<CR>
-    nnoremap <silent> <leader>r <cmd>lua require("harpoon.ui").nav_next()<CR>
-    nnoremap <silent> <leader>R <cmd>lua require("harpoon.ui").nav_prev()<CR>
+    nnoremap <silent> <leader>n <cmd>lua require("harpoon.ui").nav_next()<CR>
+    nnoremap <silent> <leader>N <cmd>lua require("harpoon.ui").nav_prev()<CR>
 
     " VISUALIZE TABS AND NEWLINES
     nnoremap <silent> <F12> <cmd>set list!<CR>
@@ -164,8 +158,6 @@ syntax on                                 " Turn on syntax highlighting
     nnoremap <silent> <leader><Down> <cmd>resize +10<CR>
 
     " PROJECT STRUCTURE
-    nnoremap <silent> <leader>. <cmd>NERDTreeToggle<CR>
-    nnoremap <silent> <leader>, <cmd>NERDTreeFind<CR>
     nnoremap <silent> <leader>+ <cmd>foldopen<CR>
     nnoremap <silent> <leader>- <cmd>foldclose<CR>
 

@@ -7,6 +7,8 @@ local function orientation()
 end
 
 local default_config = {
+    initial_mode = "normal",
+    hidden = true,
     layout_strategy = orientation(),
     layout_config = {
         vertical = {
@@ -44,11 +46,6 @@ require('telescope').setup {
                 ["<C-h>"] = "which_key"
             }
         },
-        layout_config = {
-            -- layout_strategy = 'vertical',
-            -- vertical = { width = 0.95 },
-            -- other layout configuration here
-        },
         file_ignore_patterns = {
             'node_modules/',
             'target/',
@@ -70,6 +67,7 @@ require('telescope').setup {
         fd = default_config,
         filetypes = default_config,
         find_files = default_config,
+        file_browser = default_config,
         git_bcommits = default_config,
         git_branches = default_config,
         git_commits = default_config,
@@ -117,10 +115,11 @@ require('telescope').setup {
         -- builtin picker
     },
     extensions = {
-        -- Your extension configuration goes here:
-        -- extension_name = {
-        --   extension_config_key = value,
-        -- }
-        -- please take a look at the readme of the extension you want to configure
+        file_browser = {
+            theme = "ivy",
+            hijack_netrw = true,                 -- disables netrw and use telescope-file-browser in its place
+            initial_mode = "normal",
+        },
     }
 }
+require("telescope").load_extension "file_browser";
