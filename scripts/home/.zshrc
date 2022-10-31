@@ -21,6 +21,7 @@ alias gwt="git worktree"
 alias gob="go build"
 alias gor="go run"
 alias got="go test"
+alias grlc="git reflog expire --expire=5.days.ago --expire-unreachable=now"
 
 alias ff="find . -iname"
 
