@@ -145,9 +145,8 @@ syntax on                                 " Turn on syntax highlighting
     nnoremap <silent> <leader>N <cmd>lua require("harpoon.ui").nav_prev()<CR>
 
     " VISUALIZE TABS AND NEWLINES
-    nnoremap <silent> <F12> <cmd>set list!<CR>
+    noremap <silent> <F12> <cmd>set list!<CR>
     inoremap <silent> <F12> <cmd>set list!<CR>
-    vnoremap <silent> <F12> <cmd>set list!<CR>
     nnoremap <silent> <c-h> <c-w>h
     nnoremap <silent> <c-j> <c-w>j
     nnoremap <silent> <c-k> <c-w>k
