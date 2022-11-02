@@ -26,8 +26,12 @@ alias grlc="git reflog expire --expire=5.days.ago --expire-unreachable=now"
 alias ff="find . -iname"
 
 # Docker alias config
-alias dk="docker"
-alias dkcp="docker compose"
+alias di="docker image"
+alias dcp="docker compose"
+alias dc="docker container"
+alias db="docker build"
+alias dr="docker run"
+alias dbp="docker builder prune"
 
 # Kubernetes
 alias mnk="minikube"
