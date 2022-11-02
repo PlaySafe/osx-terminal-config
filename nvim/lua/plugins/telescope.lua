@@ -7,7 +7,6 @@ local function orientation()
 end
 
 local default_config = {
-    initial_mode = "normal",
     hidden = true,
     layout_strategy = orientation(),
     layout_config = {
@@ -106,19 +105,12 @@ require('telescope').setup {
         tagstack = default_config,
         treesitter = default_config,
         vim_options = default_config,
-        -- Default configuration for builtin pickers goes here:
-        -- picker_name = {
-        --   picker_config_key = value,
-        --   ...
-        -- }
-        -- Now the picker_config_key will be applied every time you call this
-        -- builtin picker
     },
     extensions = {
         file_browser = {
             theme = "ivy",
-            hijack_netrw = true,                 -- disables netrw and use telescope-file-browser in its place
-            initial_mode = "normal",
+            hijack_netrw = false,  -- disables netrw and use telescope-file-browser in its place
+            hidden = true,
         },
     }
 }
