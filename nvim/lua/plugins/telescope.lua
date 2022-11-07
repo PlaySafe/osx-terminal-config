@@ -46,11 +46,11 @@ require('telescope').setup {
             }
         },
         file_ignore_patterns = {
-            'node_modules/',
-            'target/',
-            '.git/',
-            '.idea',
-            '.settings',
+            '^node_modules/',
+            '^target/',
+            '^.git/',
+            '^.idea',
+            '^.settings',
         }
     },
     pickers = {
