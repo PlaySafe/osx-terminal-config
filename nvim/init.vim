@@ -1,7 +1,7 @@
-filetype off                              " Helps force plugins to load correctly when it is turned back on below
-filetype plugin on                        " For plugins to load correctly
+filetype off                                                         " Helps force plugins to load correctly when it is turned back on below
+filetype plugin on                                                   " For plugins to load correctly
 filetype indent on
-syntax on                                 " Turn on syntax highlighting
+syntax on                                                            " Turn on syntax highlighting
 
 
 """ Load plugins here (pathogen or bundle)
@@ -18,6 +18,7 @@ syntax on                                 " Turn on syntax highlighting
         Plug 'SirVer/ultisnips' | Plug 'honza/vim-snippets'
         Plug 'tpope/vim-commentary'                                  " Normal mode commenting (gcc & gc)
         Plug 'mfussenegger/nvim-dap'                                 " Debug Adapter Protocol
+        Plug 'tpope/vim-surround'                                    " Surrounding parenthesis, brackets, etc
 
         """ File searching Plugins
         Plug 'nvim-lua/plenary.nvim'                                 " Telescope & Harpoon prerequisite
@@ -42,7 +43,7 @@ syntax on                                 " Turn on syntax highlighting
    :luafile $HOME/.config/nvim/lua/plugins/telescope.lua
 
     " Plugin Config
-    let mapleader=" "                         " Leader is a comma
+    let mapleader=" "                                                " Leader is a space
     let g:UltiSnipsExpandTrigger="<C-j>"
     let g:UltiSnipsJumpForwardTrigger="<C-j>"
     let g:UltiSnipsJumpBackwardTrigger="<C-k>"
@@ -53,67 +54,67 @@ syntax on                                 " Turn on syntax highlighting
 
 
 """ Set Style """
-    set nocompatible                          " Set compatible with Vim only
-    set autoindent                            " Enable automatic indentation
+    set nocompatible                                                 " Set compatible with Vim only
+    set autoindent                                                   " Enable automatic indentation
     set smartindent
-    set modelines=0                           " Security Config : Disabled the modeline
+    set modelines=0                                                  " Security Config : Disabled the modeline
 
 
 """ UI CONFIGURATION
-    set number relativenumber                 " Show line numbers
-    set ruler                                 " Show file stats
-    set showcmd                               " Show command in bottom bar
+    set number relativenumber                                        " Show line numbers
+    set ruler                                                        " Show file stats
+    set showcmd                                                      " Show command in bottom bar
     set wildmode=longest,list,full
-    set wildmenu                              " Visual autocomplete for command menu
-    set showmatch                             " Highlight matching [{()}]
+    set wildmenu                                                     " Visual autocomplete for command menu
+    set showmatch                                                    " Highlight matching [{()}]
     set noerrorbells
     set encoding=utf-8
     set nowrap
     set formatoptions=tcqrn1
     set nohlsearch
     " set cmdheight=2
-    set signcolumn=yes                        " Leave front space for error, +, - sign
-    set colorcolumn=120                       " Show the vertical line of nth column
+    set signcolumn=yes                                               " Leave front space for error, +, - sign
+    set colorcolumn=120                                              " Show the vertical line of nth column
     set completeopt=menu,menuone,noselect
 
 
 """ SPACES & TABS CONFIGURATION
-    set tabstop=4                             " number of visual spaces per TAB
-    set softtabstop=0                         " Remove all spaces that comes from pressing a tab button
-    set expandtab                             " Replace Tab with whitespace
+    set tabstop=4                                                    " number of visual spaces per TAB
+    set softtabstop=0                                                " Remove all spaces that comes from pressing a tab button
+    set expandtab                                                    " Replace Tab with whitespace
     set shiftwidth=4
     set noshiftround
     set smarttab
-    set showmode                              " Last line
+    set showmode                                                     " Last line
 
 
 """ FOLDING
-    set foldenable                            " Enable Folding
-    set foldlevelstart=15                     " Open most fold by default
-    set foldnestmax=20                        " Maximum nested fold
-    set foldmethod=indent                     " Fold based on indent level
+    set foldenable                                                   " Enable Folding
+    set foldlevelstart=15                                            " Open most fold by default
+    set foldnestmax=20                                               " Maximum nested fold
+    set foldmethod=indent                                            " Fold based on indent level
 
 
 """ CURSOR MOTION
-    set scrolloff=8                           " The number of lines display above and below the cursor
-    set backspace=indent,eol,start            " The behavior of pressing the backspace key
-    set cursorline                            " Display horizontal line of current line
+    set scrolloff=8                                                  " The number of lines display above and below the cursor
+    set backspace=indent,eol,start                                   " The behavior of pressing the backspace key
+    set cursorline                                                   " Display horizontal line of current line
 
 
 " OTHERS
-    set hidden                                " Allow hidden buffers
-    set ttyfast                               " Speed up scrolling in Vim
-    set laststatus=2                          " Status bar
-    set incsearch                             " Search as characters are entered
-    set hlsearch                              " Highlight matches the search
+    set hidden                                                       " Allow hidden buffers
+    set ttyfast                                                      " Speed up scrolling in Vim
+    set laststatus=2                                                 " Status bar
+    set incsearch                                                    " Search as characters are entered
+    set hlsearch                                                     " Highlight matches the search
     set ignorecase
     set noswapfile
     set nobackup
     set undodir=$HOME/.local/share/nvim/undodir
     set undofile
     set updatetime=50
-    set spell
-    set spelllang=en_us
+    set spell                                                        " Enable spell checking
+    set spelllang=en_us                                              " Specify the languages want to be checked (comma separate)
     set autoread
     set history=200
     set path+=**
@@ -147,10 +148,6 @@ syntax on                                 " Turn on syntax highlighting
     " VISUALIZE TABS AND NEWLINES
     noremap <silent> <F12> <cmd>set list!<CR>
     inoremap <silent> <F12> <cmd>set list!<CR>
-    nnoremap <silent> <c-h> <c-w>h
-    nnoremap <silent> <c-j> <c-w>j
-    nnoremap <silent> <c-k> <c-w>k
-    nnoremap <silent> <c-l> <c-w>l
     nnoremap <silent> <leader><Right> <cmd>vertical resize +10<CR>
     nnoremap <silent> <leader><Left> <cmd>vertical resize -10<CR>
     nnoremap <silent> <leader><Up> <cmd>resize -10<CR>
@@ -162,11 +159,7 @@ syntax on                                 " Turn on syntax highlighting
 
     " OTHERS
     nnoremap <silent> <leader>o O<ESC>j
-    vnoremap J :m '>+1<CR>V                " Line swap forward
-    vnoremap K :m '<-2<CR>V                " Swap backward
-    nnoremap <silent> qw" ciw"<C-r>""<Esc> " Add double quote
-    nnoremap <silent> qw' ciw'<C-r>"'<Esc> " Add single quote
-    nnoremap <leader>w <cmd>bd<CR>         " Close current buffer
+    nnoremap <leader>w <cmd>bd<CR>                                   " Close current buffer (Close windows)
 
     " LSP Config
     nnoremap <silent> <leader>gd <cmd>lua vim.lsp.buf.definition()<CR>
@@ -224,4 +217,4 @@ syntax on                                 " Turn on syntax highlighting
     autocmd FileType dap-repl lua require('dap.ext.autocompl').attach()
 
     " Config files
-    autocmd BufReadPost,BufNewFile *.yml,*.yaml,*.snippets set cursorcolumn
+    autocmd BufReadPost,BufNewFile * set cursorcolumn
