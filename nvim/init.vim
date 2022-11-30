@@ -19,6 +19,7 @@ syntax on                                                            " Turn on s
         Plug 'tpope/vim-commentary'                                  " Normal mode commenting (gcc & gc)
         Plug 'mfussenegger/nvim-dap'                                 " Debug Adapter Protocol
         Plug 'tpope/vim-surround'                                    " Surrounding parenthesis, brackets, etc
+        Plug 'majutsushi/tagbar'                                     " Overview structure
 
         """ File searching Plugins
         Plug 'nvim-lua/plenary.nvim'                                 " Telescope & Harpoon prerequisite
@@ -72,7 +73,7 @@ syntax on                                                            " Turn on s
     set nowrap
     set formatoptions=tcqrn1
     set nohlsearch
-    " set cmdheight=2
+    set cmdheight=1
     set signcolumn=yes                                               " Leave front space for error, +, - sign
     set colorcolumn=120                                              " Show the vertical line of nth column
     set completeopt=menu,menuone,noselect
@@ -156,6 +157,7 @@ syntax on                                                            " Turn on s
     " PROJECT STRUCTURE
     nnoremap <silent> <leader>+ <cmd>foldopen<CR>
     nnoremap <silent> <leader>- <cmd>foldclose<CR>
+    nnoremap <silent> <F1> <cmd>TagbarToggle<CR>
 
     " OTHERS
     nnoremap <silent> <leader>o O<ESC>j

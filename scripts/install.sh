@@ -41,3 +41,4 @@ python3 -m pip install --user --upgrade pynvim
 
 brew install jq
 brew install tflint
+brew install ctags-exuberant
