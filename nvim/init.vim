@@ -175,11 +175,11 @@ syntax on                                                            " Turn on s
     nnoremap <silent> <leader>gn <cmd>lua vim.lsp.buf.goto_next()<CR>
 
     " DAP (Debug Adapter Protocol)
-    nnoremap <silent>  <F5> <cmd>lua require('dap').clear_breakpoints()<CR>
+    nnoremap <silent>  <F4> <cmd>lua require('dap').clear_breakpoints()<CR>
     nnoremap <silent>  <F6> <cmd>lua require('dap').toggle_breakpoint()<CR>
     nnoremap <silent>  <F7> <cmd>lua require('dap').step_into()<CR>
     nnoremap <silent>  <F8> <cmd>lua require('dap').step_over()<CR>
-    nnoremap <silent>  <F9> <cmd>lua require('dap').repl.open()<CR>
+    nnoremap <silent>  <F9> <cmd>lua require('dap').repl.toggle()<CR>
     nnoremap <silent> <F10> <cmd>lua require('dap').continue()<CR>
 
     " Command execution (Run from file)
