@@ -26,6 +26,7 @@ syntax on                                                            " Turn on s
         Plug 'nvim-telescope/telescope.nvim' | Plug 'nvim-telescope/telescope-file-browser.nvim' " Fuzzy Search File
         Plug 'nvim-lua/popup.nvim'                                   " Harpoon prerequisite
         Plug 'ThePrimeagen/harpoon'                                  " Shortcut to specific file and line
+        Plug 'kshenoy/vim-signature'                                 " Show mark key in front of line
 
         """ Cosmetic
         Plug 'nvim-treesitter/nvim-treesitter', {'do': ':TSUpdate'}  " Language Syntax Highlight
