@@ -213,7 +213,8 @@ syntax on                                                            " Turn on s
         " then execute the goimports command
         " The gofmt will be triggered automatically by goimports, so we don't need to run it again
         autocmd!
-        autocmd BufWritePre *.go silent :%!goimports
+        autocmd BufWritePre *.go silent :%!gofmt
+        autocmd BufWritePre *.go lua vim.lsp.buf.code_action({ source = { organizeImports = true } })
     augroup END
 
     " Debug
