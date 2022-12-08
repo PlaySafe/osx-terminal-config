@@ -20,6 +20,7 @@ syntax on                                                            " Turn on s
         Plug 'mfussenegger/nvim-dap'                                 " Debug Adapter Protocol
         Plug 'tpope/vim-surround'                                    " Surrounding parenthesis, brackets, etc
         Plug 'majutsushi/tagbar'                                     " Overview structure
+        Plug 'jiangmiao/auto-pairs'                                  " Auto close bracket added
 
         """ File searching Plugins
         Plug 'nvim-lua/plenary.nvim'                                 " Telescope & Harpoon prerequisite
