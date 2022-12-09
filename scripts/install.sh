@@ -42,3 +42,7 @@ python3 -m pip install --user --upgrade pynvim
 brew install jq
 brew install tflint
 brew install ctags-exuberant
+
+#Config the screenshot
+defaults write com.apple.screencapture type jpg
+defaults write com.apple.screencapture location ~/Desktop/Screenshot
