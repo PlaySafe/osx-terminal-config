@@ -1,4 +1,13 @@
-require("nvim-lsp-installer").setup {
+require("mason").setup({
+        ui = {
+        icons = {
+            package_installed = "",
+            package_pending = "",
+            package_uninstalled = "",
+        }
+    }
+})
+require("mason-lspconfig").setup {
     ensure_installed = {
         "ansiblels",
         "bashls",
@@ -14,34 +23,17 @@ require("nvim-lsp-installer").setup {
         "jdtls",
         "jsonls",
         "lemminx",
-        "ltex",
-        "prosemd_lsp",
+        "marksman",
         "pyright",
         "quick_lint_js",
-        "remark_ls",
         "rome",
-        "sqlls",
         "sqls",
         "sumneko_lua",
         "terraformls",
-        "texlab",
         "tsserver",
         "vimls",
         "yamlls",
-        "zk",
     },
-    automatic_installation = {
-        exclude = {
-            -- "jdtls"
-        }
-    },
-    ui = {
-        icons = {
-            server_installed = "",
-            server_pending = "",
-            server_uninstalled = "",
-        }
-    }
 }
 
 -- See `:help vim.diagnostic.*` for documentation on any of the below functions

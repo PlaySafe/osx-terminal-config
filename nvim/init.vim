@@ -8,13 +8,8 @@ syntax on                                                            " Turn on s
     call plug#begin()
 
         """ Main plugin for working
-        Plug 'neovim/nvim-lspconfig'                                 " LSP for languages
-        Plug 'williamboman/nvim-lsp-installer'                       " Provide LSP command, easy to install
-        Plug 'hrsh7th/nvim-cmp'                                      " Intellisense
-        Plug 'hrsh7th/cmp-nvim-lsp'
-        Plug 'hrsh7th/cmp-buffer'
-        Plug 'hrsh7th/cmp-path'
-        Plug 'hrsh7th/cmp-cmdline'
+        Plug 'neovim/nvim-lspconfig' | Plug 'williamboman/mason.nvim' | Plug 'williamboman/mason-lspconfig.nvim' " LSP for languages
+        Plug 'hrsh7th/nvim-cmp' | Plug 'hrsh7th/cmp-nvim-lsp' | Plug 'hrsh7th/cmp-buffer' | Plug 'hrsh7th/cmp-path' | Plug 'hrsh7th/cmp-cmdline' " Intellisense
         Plug 'SirVer/ultisnips' | Plug 'honza/vim-snippets'
         Plug 'tpope/vim-commentary'                                  " Normal mode commenting (gcc & gc)
         Plug 'mfussenegger/nvim-dap'                                 " Debug Adapter Protocol
