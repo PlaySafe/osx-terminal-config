@@ -10,9 +10,9 @@ syntax on                                                            " Turn on s
         """ Main plugin for working
         Plug 'neovim/nvim-lspconfig' | Plug 'williamboman/mason.nvim' | Plug 'williamboman/mason-lspconfig.nvim' " LSP for languages
         Plug 'hrsh7th/nvim-cmp' | Plug 'hrsh7th/cmp-nvim-lsp' | Plug 'hrsh7th/cmp-buffer' | Plug 'hrsh7th/cmp-path' | Plug 'hrsh7th/cmp-cmdline' " Intellisense
-        Plug 'SirVer/ultisnips' | Plug 'honza/vim-snippets'
+        Plug 'SirVer/ultisnips' | Plug 'honza/vim-snippets'          " Code snippets
         Plug 'tpope/vim-commentary'                                  " Normal mode commenting (gcc & gc)
-        Plug 'mfussenegger/nvim-dap'                                 " Debug Adapter Protocol
+        Plug 'mfussenegger/nvim-dap' | Plug 'rcarriga/nvim-dap-ui'   " Debug Adapter Protocol
         Plug 'tpope/vim-surround'                                    " Surrounding parenthesis, brackets, etc
         Plug 'majutsushi/tagbar'                                     " Overview structure
         Plug 'jiangmiao/auto-pairs'                                  " Auto close bracket added
@@ -20,6 +20,7 @@ syntax on                                                            " Turn on s
         """ File searching Plugins
         Plug 'nvim-lua/plenary.nvim'                                 " Telescope & Harpoon prerequisite
         Plug 'nvim-telescope/telescope.nvim' | Plug 'nvim-telescope/telescope-file-browser.nvim' " Fuzzy Search File
+        Plug 'nvim-telescope/telescope-dap.nvim'
         Plug 'nvim-lua/popup.nvim'                                   " Harpoon prerequisite
         Plug 'ThePrimeagen/harpoon'                                  " Shortcut to specific file and line
         Plug 'kshenoy/vim-signature'                                 " Show mark key in front of line
@@ -37,6 +38,7 @@ syntax on                                                            " Turn on s
 
    :luafile $HOME/.config/nvim/lua/plugins/nvim-treesitter.lua
    :luafile $HOME/.config/nvim/lua/plugins/nvim-lspconfig.lua
+   :luafile $HOME/.config/nvim/lua/plugins/nvim-dap.lua
    :luafile $HOME/.config/nvim/lua/plugins/cmp.lua
    :luafile $HOME/.config/nvim/lua/plugins/telescope.lua
 
@@ -172,12 +174,21 @@ syntax on                                                            " Turn on s
     nnoremap <silent> <leader>gn <cmd>lua vim.lsp.buf.goto_next()<CR>
 
     " DAP (Debug Adapter Protocol)
-    nnoremap <silent>  <F4> <cmd>lua require('dap').clear_breakpoints()<CR>
-    nnoremap <silent>  <F6> <cmd>lua require('dap').toggle_breakpoint()<CR>
-    nnoremap <silent>  <F7> <cmd>lua require('dap').step_into()<CR>
-    nnoremap <silent>  <F8> <cmd>lua require('dap').step_over()<CR>
-    nnoremap <silent>  <F9> <cmd>lua require('dap').repl.toggle()<CR>
-    nnoremap <silent> <F10> <cmd>lua require('dap').continue()<CR>
+    nnoremap <silent> <leader>dD <cmd>lua require('dap').clear_breakpoints()<CR>
+    nnoremap <silent> <leader>db <cmd>lua require('dap').toggle_breakpoint()<CR>
+    nnoremap <silent> <leader>dc <cmd>lua require('dap').set_breakpoint(vim.fn.input("Breakpoint condition: "))<CR>
+    nnoremap <silent> <leader>dI <cmd>lua require('dap.ui.variables').hover(function() return vim.fn.expand("<cexpr>") end)<CR>
+    nnoremap <silent> <leader>di <cmd>lua require('dap').step_into()<CR>
+    nnoremap <silent> <leader>do <cmd>lua require('dap').step_over()<CR>
+    nnoremap <silent> <leader>d/ <cmd>lua require('dap').repl.toggle()<CR>
+    nnoremap <silent> <leader>d^ <cmd>lua require('dap').repl.run_first()<CR>
+    nnoremap <silent> <leader>d$ <cmd>lua require('dap').repl.run_last()<CR>
+    nnoremap <silent> <leader>dn <cmd>lua require('dap').continue()<CR>
+    nnoremap <silent> <leader>dv <cmd>lua require"telescope".extensions.dap.variables{}<CR>
+    nnoremap <silent> <leader>dB <cmd>lua require"telescope".extensions.dap.list_breakpoints{}<CR>
+    nnoremap <silent> <leader>d? <cmd>lua require"telescope".extensions.dap.configurations{}<CR>
+    nnoremap <silent> <leader>d: <cmd>lua require"telescope".extensions.dap.commands{}<CR>
+    nnoremap <silent> <leader>df <cmd>lua require"telescope".extensions.dap.frames{}<CR>
 
     " Command execution (Run from file)
     nnoremap <leader>x ^"xY:!<space><C-r>x<CR>

@@ -35,6 +35,7 @@ brew install pwgen
 
 brew install go
 go install golang.org/x/tools/cmd/goimports@latest
+go install github.com/go-delve/delve/cmd/dlv@latest
 
 brew install python3
 python3 -m pip install --user --upgrade pynvim

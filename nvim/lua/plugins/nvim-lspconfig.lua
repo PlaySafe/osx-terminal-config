@@ -76,57 +76,20 @@ local lsp_flags = {
 
 -- Set up lspconfig.
 local capabilities = require('cmp_nvim_lsp').default_capabilities(vim.lsp.protocol.make_client_capabilities())
-
-local dap = require('dap')
+local defaultLspSetup = {
+    flags = lsp_flags,
+    on_attach = on_attach,
+    capabilities = capabilities,
+}
 local lspconfig = require('lspconfig')
-lspconfig['ansiblels'].setup {
-    flags = lsp_flags,
-    on_attach = on_attach,
-    capabilities = capabilities,
-}
-
-lspconfig['bashls'].setup {
-    flags = lsp_flags,
-    on_attach = on_attach,
-    capabilities = capabilities,
-}
-
-lspconfig['cmake'].setup {
-    flags = lsp_flags,
-    on_attach = on_attach,
-    capabilities = capabilities,
-}
-
-lspconfig['cssls'].setup {
-    flags = lsp_flags,
-    on_attach = on_attach,
-    capabilities = capabilities,
-}
-
-lspconfig['cssmodules_ls'].setup {
-    flags = lsp_flags,
-    on_attach = on_attach,
-    capabilities = capabilities,
-}
-
-lspconfig['cucumber_language_server'].setup {
-    flags = lsp_flags,
-    on_attach = on_attach,
-    capabilities = capabilities,
-}
-
-lspconfig['dockerls'].setup {
-    flags = lsp_flags,
-    on_attach = on_attach,
-    capabilities = capabilities,
-}
-
-lspconfig['golangci_lint_ls'].setup {
-    flags = lsp_flags,
-    on_attach = on_attach,
-    capabilities = capabilities,
-}
-
+lspconfig['ansiblels'].setup = defaultLspSetup
+lspconfig['bashls'].setup = defaultLspSetup
+lspconfig['cmake'].setup = defaultLspSetup
+lspconfig['cssls'].setup = defaultLspSetup
+lspconfig['cssmodules_ls'].setup = defaultLspSetup
+lspconfig['cucumber_language_server'].setup = defaultLspSetup
+lspconfig['dockerls'].setup = defaultLspSetup
+lspconfig['golangci_lint_ls'].setup = defaultLspSetup
 lspconfig['gopls'].setup {
     flags = lsp_flags,
     on_attach = on_attach,
@@ -141,19 +104,8 @@ lspconfig['gopls'].setup {
         },
     },
 }
-
-lspconfig['groovyls'].setup {
-    flags = lsp_flags,
-    on_attach = on_attach,
-    capabilities = capabilities,
-}
-
-lspconfig['html'].setup {
-    flags = lsp_flags,
-    on_attach = on_attach,
-    capabilities = capabilities,
-}
-
+lspconfig['groovyls'].setup = defaultLspSetup
+lspconfig['html'].setup = defaultLspSetup
 lspconfig['jdtls'].setup {
     flags = lsp_flags,
     on_attach = on_attach,
@@ -179,59 +131,10 @@ lspconfig['jdtls'].setup {
         ["java.symbols.includeSourceMethodDeclarations"] = true,
     },
 }
-dap["adapters"]["java"] = function(callback)
-    callback({
-        type = "server",
-        host = "127.0.0.1",
-        port = "1044",
-    })
-end
-dap["configurations"]["java"] = {
-    {
-        type = "java",
-        request = "attach",
-        name = "Debug (Attach) - Remote",
-        hostName = "127.0.0.1",
-        port = "5005",
-    },
-}
-vim.fn.sign_define("DapBreakpoint",          {text="", texthl="Red",    linehl="NONE", numhl="NONE", culhl="NONE"})
-vim.fn.sign_define("DapBreakpointCondition", {text="", texthl="Yellow", linehl="NONE", numhl="NONE", culhl="NONE"})
-vim.fn.sign_define("DapLogPoint",            {text="", texthl="White",  linehl="NONE", numhl="NONE", culhl="NONE"})
-vim.fn.sign_define("DapStopped",             {text="", texthl="Blue",   linehl="NONE", numhl="NONE", culhl="NONE"})
-vim.fn.sign_define("DapBreakpointRejected",  {text="", texthl="Grey",   linehl="NONE", numhl="NONE", culhl="NONE"})
-
-
-lspconfig['jsonls'].setup {
-    flags = lsp_flags,
-    on_attach = on_attach,
-    capabilities = capabilities,
-}
-
-lspconfig['pyright'].setup {
-    flags = lsp_flags,
-    on_attach = on_attach,
-    capabilities = capabilities,
-}
-
-lspconfig['rome'].setup {
-    flags = lsp_flags,
-    on_attach = on_attach,
-    capabilities = capabilities,
-}
-
-lspconfig['sqlls'].setup {
-    flags = lsp_flags,
-    on_attach = on_attach,
-    capabilities = capabilities,
-}
-
-lspconfig['sqls'].setup {
-    flags = lsp_flags,
-    on_attach = on_attach,
-    capabilities = capabilities,
-}
-
+lspconfig['jsonls'].setup = defaultLspSetup
+lspconfig['pyright'].setup = defaultLspSetup
+lspconfig['rome'].setup = defaultLspSetup
+lspconfig['sqls'].setup = defaultLspSetup
 lspconfig['sumneko_lua'].setup {
     flags = lsp_flags,
     on_attach = on_attach,
@@ -244,25 +147,9 @@ lspconfig['sumneko_lua'].setup {
         }
     },
 }
-
-lspconfig['terraformls'].setup {
-    flags = lsp_flags,
-    on_attach = on_attach,
-    capabilities = capabilities,
-}
-
-lspconfig['tsserver'].setup {
-    flags = lsp_flags,
-    on_attach = on_attach,
-    capabilities = capabilities,
-}
-
-lspconfig['vimls'].setup {
-    flags = lsp_flags,
-    on_attach = on_attach,
-    capabilities = capabilities,
-}
-
+lspconfig['terraformls'].setup = defaultLspSetup
+lspconfig['tsserver'].setup = defaultLspSetup
+lspconfig['vimls'].setup = defaultLspSetup
 lspconfig['yamlls'].setup {
     flags = lsp_flags,
     on_attach = on_attach,
@@ -288,10 +175,4 @@ lspconfig['yamlls'].setup {
         "yaml.docker-compose",
     }
 }
-
-lspconfig['zk'].setup {
-    flags = lsp_flags,
-    on_attach = on_attach,
-    capabilities = capabilities,
-}
-
+lspconfig['zk'].setup = defaultLspSetup
