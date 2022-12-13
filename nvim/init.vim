@@ -16,6 +16,7 @@ syntax on                                                            " Turn on s
         Plug 'tpope/vim-surround'                                    " Surrounding parenthesis, brackets, etc
         Plug 'majutsushi/tagbar'                                     " Overview structure
         Plug 'jiangmiao/auto-pairs'                                  " Auto close bracket added
+        Plug 'tpope/vim-dotenv' | Plug 'tpope/vim-dadbod' | Plug 'kristijanhusak/vim-dadbod-ui' " Database Client
 
         """ File searching Plugins
         Plug 'nvim-lua/plenary.nvim'                                 " Telescope & Harpoon prerequisite
@@ -119,6 +120,7 @@ syntax on                                                            " Turn on s
     set history=200
     set path+=**
     set clipboard^=unnamed,unnamedplus
+    set timeoutlen=2000
 
 
 """ Visualize tabs and newlines
