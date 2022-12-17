@@ -1,25 +1,9 @@
 require('nvim-treesitter.configs').setup {
     -- A list of parser names, or "all"
     ensure_installed = {
-        "cmake",
-        "css",
-        "go",
-        "godot_resource",
-        "gomod",
-        "gowork",
-        "html",
-        "http",
-        "java",
         "javascript",
-        "jsdoc",
         "json",
         "lua",
-        "make",
-        "markdown",
-        "markdown_inline",
-        "python",
-        "scss",
-        "sql",
         "typescript",
         "vim",
         "yaml"

@@ -9,30 +9,6 @@ require("mason").setup({
 })
 require("mason-lspconfig").setup {
     ensure_installed = {
-        "ansiblels",
-        "bashls",
-        "cmake",
-        "cssls",
-        "cssmodules_ls",
-        "cucumber_language_server",
-        "dockerls",
-        "golangci_lint_ls",
-        "gopls",
-        "groovyls",
-        "html",
-        "jdtls",
-        "jsonls",
-        "lemminx",
-        "marksman",
-        "pyright",
-        "quick_lint_js",
-        "rome",
-        "sqls",
-        "sumneko_lua",
-        "terraformls",
-        "tsserver",
-        "vimls",
-        "yamlls",
     },
 }
 
@@ -82,97 +58,96 @@ local defaultLspSetup = {
     capabilities = capabilities,
 }
 local lspconfig = require('lspconfig')
-lspconfig['ansiblels'].setup = defaultLspSetup
-lspconfig['bashls'].setup = defaultLspSetup
-lspconfig['cmake'].setup = defaultLspSetup
-lspconfig['cssls'].setup = defaultLspSetup
-lspconfig['cssmodules_ls'].setup = defaultLspSetup
-lspconfig['cucumber_language_server'].setup = defaultLspSetup
-lspconfig['dockerls'].setup = defaultLspSetup
-lspconfig['golangci_lint_ls'].setup = defaultLspSetup
-lspconfig['gopls'].setup {
-    flags = lsp_flags,
-    on_attach = on_attach,
-    settings = {
-        gopls = {
-            experimentalPostfixCompletions = true,
-            analyses = {
-                unusedparams = true,
-                shadow = true,
-            },
-            staticcheck = true,
-        },
-    },
-}
-lspconfig['groovyls'].setup = defaultLspSetup
-lspconfig['html'].setup = defaultLspSetup
-lspconfig['jdtls'].setup {
-    flags = lsp_flags,
-    on_attach = on_attach,
-    capabilities = capabilities,
-    settings = {
-        ["codeLens.enable"] = true,
-        ["java.autobuild.enabled"] = true,
-        ["java.completion.enabled"] = true,
-        ["java.configuration.maven.globalSettings"] = vim.fs.normalize("$HOME/.m2/settings.xml"),
-        ["java.configuration.maven.userSettings"] = vim.fs.normalize("$HOME/.m2/settings.xml"),
-        ["java.format.settings.url"] = vim.fs.normalize("$HOME/.config/nvim/format/java_format.xml"),
-        ["java.home"] = vim.fs.normalize("$JAVA_HOME"),
-        ["java.implementationsCodeLens.enabled"] = true,
-        ["java.jdt.ls.java.home"] = vim.fs.normalize("$JAVA_HOME"),
-        ["java.maven.downloadSources"] = true,
-        ["java.maven.updateSnapshots"] = true,
-        ["java.progressReports.enabled"] = false,
-        ["java.referenceCodeLens.enabled"] = true,
-        ["java.saveActions.organizeImports"] = true,
-        ["java.server.launchMode"] = "Standard",
-        ["java.signatureHelp.description.enabled"] = true,
-        ["java.signatureHelp.enabled"] = true,
-        ["java.symbols.includeSourceMethodDeclarations"] = true,
-    },
-}
-lspconfig['jsonls'].setup = defaultLspSetup
-lspconfig['pyright'].setup = defaultLspSetup
-lspconfig['rome'].setup = defaultLspSetup
-lspconfig['sqls'].setup = defaultLspSetup
-lspconfig['sumneko_lua'].setup {
-    flags = lsp_flags,
-    on_attach = on_attach,
-    capabilities = capabilities,
-    settings = {
-        Lua = {
-            diagnostics = {
-                globals = { 'vim' }
-            }
-        }
-    },
-}
-lspconfig['terraformls'].setup = defaultLspSetup
-lspconfig['tsserver'].setup = defaultLspSetup
-lspconfig['vimls'].setup = defaultLspSetup
-lspconfig['yamlls'].setup {
-    flags = lsp_flags,
-    on_attach = on_attach,
-    capabilities = capabilities,
-    cmd = {
-        "yaml-language-server",
-        "--stdio"
-    },
-    settings = {
-        redhat = {
-            telemetry = {
-                enabled = false
-            }
-        },
-        yaml = {
-            schemas = {
-                ["https://raw.githubusercontent.com/instrumenta/kubernetes-json-schema/master/v1.18.0-standalone-strict/all.json"] = "/*.k8s.yaml",
-            }
-        }
-    },
-    filetypes = {
-        "yaml",
-        "yaml.docker-compose",
-    }
-}
-lspconfig['zk'].setup = defaultLspSetup
+-- lspconfig['ansiblels'].setup = defaultLspSetup
+-- lspconfig['bashls'].setup = defaultLspSetup
+-- lspconfig['cmake'].setup = defaultLspSetup
+-- lspconfig['cssls'].setup = defaultLspSetup
+-- lspconfig['cssmodules_ls'].setup = defaultLspSetup
+-- lspconfig['cucumber_language_server'].setup = defaultLspSetup
+-- lspconfig['dockerls'].setup = defaultLspSetup
+-- lspconfig['golangci_lint_ls'].setup = defaultLspSetup
+-- lspconfig['gopls'].setup {
+--     flags = lsp_flags,
+--     on_attach = on_attach,
+--     settings = {
+--         gopls = {
+--             experimentalPostfixCompletions = true,
+--             analyses = {
+--                 unusedparams = true,
+--                 shadow = true,
+--             },
+--             staticcheck = true,
+--         },
+--     },
+-- }
+-- lspconfig['groovyls'].setup = defaultLspSetup
+-- lspconfig['html'].setup = defaultLspSetup
+-- lspconfig['jdtls'].setup {
+--     flags = lsp_flags,
+--     on_attach = on_attach,
+--     capabilities = capabilities,
+--     settings = {
+--         ["codeLens.enable"] = true,
+--         ["java.autobuild.enabled"] = true,
+--         ["java.completion.enabled"] = true,
+--         ["java.configuration.maven.globalSettings"] = vim.fs.normalize("$HOME/.m2/settings.xml"),
+--         ["java.configuration.maven.userSettings"] = vim.fs.normalize("$HOME/.m2/settings.xml"),
+--         ["java.format.settings.url"] = vim.fs.normalize("$HOME/.config/nvim/format/java_format.xml"),
+--         ["java.home"] = vim.fs.normalize("$JAVA_HOME"),
+--         ["java.implementationsCodeLens.enabled"] = true,
+--         ["java.jdt.ls.java.home"] = vim.fs.normalize("$JAVA_HOME"),
+--         ["java.maven.downloadSources"] = true,
+--         ["java.maven.updateSnapshots"] = true,
+--         ["java.progressReports.enabled"] = false,
+--         ["java.referenceCodeLens.enabled"] = true,
+--         ["java.saveActions.organizeImports"] = true,
+--         ["java.server.launchMode"] = "Standard",
+--         ["java.signatureHelp.description.enabled"] = true,
+--         ["java.signatureHelp.enabled"] = true,
+--         ["java.symbols.includeSourceMethodDeclarations"] = true,
+--     },
+-- }
+-- lspconfig['jsonls'].setup = defaultLspSetup
+-- lspconfig['pyright'].setup = defaultLspSetup
+-- lspconfig['rome'].setup = defaultLspSetup
+-- lspconfig['sqls'].setup = defaultLspSetup
+-- lspconfig['sumneko_lua'].setup {
+--     flags = lsp_flags,
+--     on_attach = on_attach,
+--     capabilities = capabilities,
+--     settings = {
+--         Lua = {
+--             diagnostics = {
+--                 globals = { 'vim' }
+--             }
+--         }
+--     },
+-- }
+-- lspconfig['terraformls'].setup = defaultLspSetup
+-- lspconfig['tsserver'].setup = defaultLspSetup
+-- lspconfig['vimls'].setup = defaultLspSetup
+-- lspconfig['yamlls'].setup {
+--     flags = lsp_flags,
+--     on_attach = on_attach,
+--     capabilities = capabilities,
+--     cmd = {
+--         "yaml-language-server",
+--         "--stdio"
+--     },
+--     settings = {
+--         redhat = {
+--             telemetry = {
+--                 enabled = false
+--             }
+--         },
+--         yaml = {
+--             schemas = {
+--                 ["https://raw.githubusercontent.com/instrumenta/kubernetes-json-schema/master/v1.18.0-standalone-strict/all.json"] = "/*.k8s.yaml",
+--             }
+--         }
+--     },
+--     filetypes = {
+--         "yaml",
+--         "yaml.docker-compose",
+--     }
+-- }
