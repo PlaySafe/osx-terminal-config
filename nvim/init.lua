@@ -160,6 +160,7 @@ vim.g.UltiSnipsEditSplit = "vertical"
     vim.keymap.set('n', '<leader>m',  '<cmd>Telescope marks<CR>',        nil)
     vim.keymap.set('n', '<leader>j',  '<cmd>Telescope jumplist<CR>',     nil)
     vim.keymap.set('n', '<leader>R',  '<cmd>Telescope registers<CR>',    nil)
+    vim.keymap.set('n', '<leader>;',  '<cmd>Telescope commands<CR>',    nil)
     vim.keymap.set('n', '<leader>t',  function() require("harpoon.mark").add_file() end, nil)
     vim.keymap.set('n', '<leader>e',  function() require("harpoon.ui").toggle_quick_menu() end, nil)
     vim.keymap.set('n', '<leader>n',  function() require("harpoon.ui").nav_next() end, nil)

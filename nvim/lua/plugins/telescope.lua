@@ -20,11 +20,12 @@ local default_config = {
             height = 0.9,
             preview_cutoff = 120,
             prompt_position = "top",
-            width = 0.9
+            width = 0.9,
         }
     }
 }
 
+local actions = require('telescope.actions')
 require('telescope').setup {
     defaults = {
         -- Default configuration for telescope goes here:
@@ -37,12 +38,21 @@ require('telescope').setup {
                 exclude = {-2, -1}
             }
         },
+        preview = {
+            treesitter = false,
+        },
+        sorting_strategy = "ascending",
+        color_devicons = true,
         mappings = {
             i = {
                 -- map actions.which_key to <C-h> (default: <C-/>)
                 -- actions.which_key shows the mappings for your picker,
                 -- e.g. git_{create, delete, ...}_branch for the git_branches picker
-                ["<C-h>"] = "which_key"
+                ["<C-h>"] = actions.which_key,
+                ["<C-q>"] = actions.send_selected_to_qflist + actions.open_qflist,
+                ["<C-o>"] = actions.open_qflist,
+                ["<TAB>"] = actions.toggle_selection + actions.move_selection_next,
+                ["<S-TAB>"] = actions.toggle_selection + actions.move_selection_previous,
             }
         },
         file_ignore_patterns = {
@@ -53,6 +63,7 @@ require('telescope').setup {
             '^.settings',
         }
     },
+
     pickers = {
         autocommands = default_config,
         buffers = default_config,
@@ -106,13 +117,15 @@ require('telescope').setup {
         treesitter = default_config,
         vim_options = default_config,
     },
+
     extensions = {
         file_browser = {
             theme = "ivy",
             hijack_netrw = false,  -- disables netrw and use telescope-file-browser in its place
             hidden = true,
         },
-    }
+    },
+
 }
 require("telescope").load_extension("file_browser")
 require("telescope").load_extension("dap")
