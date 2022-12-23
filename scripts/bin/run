@@ -1,4 +1,4 @@
-#!/bin/sh
+#!/bin/zsh
 command=$@;
 
 #get the workspace directory
@@ -7,8 +7,8 @@ dir=$(pwd);
 #target all folders to apply this bash
 projects=($(ls -d */));
 
-#run the specific command to each project
-for project in "${projects[@]}"
+#run the specific command on each project
+for project in $projects
 do
   echo "--------------------------------------------------------------"
   echo "Progresssing in project $project";
