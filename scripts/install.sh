@@ -27,7 +27,6 @@ brew install git
 brew install git-gui
 cp ./script/gitconfig/.gitconfig $HOME/.gitconfig
 cp ./bin/run /usr/local/bin
-cp ./bin/asyncrun /usr/local/bin
 
 brew install yamllint
 brew install rust
