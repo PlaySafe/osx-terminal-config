@@ -1,8 +1,10 @@
-vim.fn.sign_define("DapBreakpoint",          {text="", texthl="Red",    linehl="NONE", numhl="NONE", culhl="NONE"})
-vim.fn.sign_define("DapBreakpointCondition", {text="", texthl="Yellow", linehl="NONE", numhl="NONE", culhl="NONE"})
-vim.fn.sign_define("DapLogPoint",            {text="", texthl="White",  linehl="NONE", numhl="NONE", culhl="NONE"})
-vim.fn.sign_define("DapStopped",             {text="", texthl="Blue",   linehl="NONE", numhl="NONE", culhl="NONE"})
-vim.fn.sign_define("DapBreakpointRejected",  {text="", texthl="Grey",   linehl="NONE", numhl="NONE", culhl="NONE"})
+vim.fn.sign_define("DapBreakpoint", { text = "", texthl = "Red", linehl = "NONE", numhl = "NONE", culhl = "NONE" })
+vim.fn.sign_define("DapBreakpointCondition", { text = "", texthl = "Yellow", linehl = "NONE", numhl = "NONE",
+    culhl = "NONE" })
+vim.fn.sign_define("DapLogPoint", { text = "", texthl = "White", linehl = "NONE", numhl = "NONE", culhl = "NONE" })
+vim.fn.sign_define("DapStopped", { text = "", texthl = "Blue", linehl = "NONE", numhl = "NONE", culhl = "NONE" })
+vim.fn.sign_define("DapBreakpointRejected", { text = "", texthl = "Grey", linehl = "NONE", numhl = "NONE",
+    culhl = "NONE" })
 
 require("dapui").setup({
     icons = { expanded = "", collapsed = "", current_frame = "" },
@@ -104,6 +106,13 @@ dap.adapters.delve = {
 dap.configurations.go = {
     {
         type = "delve",
+        name = "Launch the Application in Debug Mode (OpenAPI Only)",
+        request = "launch",
+        program = "${workspaceFolder}/cmd",
+        logLevel = "DEBUG",
+    },
+    {
+        type = "delve",
         name = "Launch the Application in Debug Mode",
         request = "launch",
         program = "${workspaceFolder}",
@@ -119,6 +128,39 @@ dap.configurations.go = {
     -- works with go.mod packages and sub packages
     {
         type = "delve",
+        name = "Start all test files under the same directory",
+        request = "launch",
+        mode = "test",
+        program = "./${relativeFileDirname}"
+    }
+}
+
+dap.adapters.java = {
+    type = 'server',
+    port = "${port}",
+    executable = {
+        command = 'dlv',
+        args = { 'dap', '-l', '127.0.0.1:${port}' },
+    },
+}
+dap.configurations.java = {
+    {
+        type = "java-debug-adapter",
+        name = "Launch the Application in Debug Mode",
+        request = "launch",
+        program = "${workspaceFolder}",
+        logLevel = "DEBUG",
+    },
+    {
+        type = "java-debug-adapter",
+        name = "Start this test file in Debug Mode", -- configuration for debugging test files
+        request = "launch",
+        mode = "test",
+        program = "${file}"
+    },
+    -- works with go.mod packages and sub packages
+    {
+        type = "java-debug-adapter",
         name = "Start all test files under the same directory",
         request = "launch",
         mode = "test",

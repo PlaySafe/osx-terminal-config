@@ -209,6 +209,11 @@ _G.packer_plugins = {
     path = "/Users/toomtarm/.local/share/nvim/site/pack/packer/start/vim-devicons",
     url = "https://github.com/ryanoasis/vim-devicons"
   },
+  ["vim-fugitive"] = {
+    loaded = true,
+    path = "/Users/toomtarm/.local/share/nvim/site/pack/packer/start/vim-fugitive",
+    url = "https://github.com/tpope/vim-fugitive"
+  },
   ["vim-signature"] = {
     loaded = true,
     path = "/Users/toomtarm/.local/share/nvim/site/pack/packer/start/vim-signature",

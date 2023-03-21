@@ -1,5 +1,5 @@
 local function orientation()
-    if vim.fn.winwidth(0) > 120 then
+    if vim.fn.winwidth(0) > 1400 then
         return 'horizontal'
     else
         return 'vertical'
@@ -26,6 +26,7 @@ local default_config = {
 }
 
 local actions = require('telescope.actions')
+local fb_actions = require "telescope".extensions.file_browser.actions
 require('telescope').setup {
     defaults = {
         -- Default configuration for telescope goes here:
@@ -35,9 +36,10 @@ require('telescope').setup {
         path_display = {
             shorten = {
                 len = 2,
-                exclude = {-2, -1}
+                exclude = { -2, -1 }
             }
         },
+        dynamic_preview_title = true,
         preview = {
             treesitter = false,
         },
@@ -53,14 +55,17 @@ require('telescope').setup {
                 ["<C-o>"] = actions.open_qflist,
                 ["<TAB>"] = actions.toggle_selection + actions.move_selection_next,
                 ["<S-TAB>"] = actions.toggle_selection + actions.move_selection_previous,
+                ["<S-Right>"] = fb_actions.change_cwd,
+                ["<S-Left>"] = fb_actions.goto_parent_dir,
             }
         },
         file_ignore_patterns = {
-            '^node_modules/',
-            '^target/',
-            '^.git/',
-            '^.idea',
-            '^.settings',
+            'node_modules/',
+            'target/',
+            '.git/',
+            '.idea',
+            '.settings',
+            '.project',
         }
     },
 
@@ -121,7 +126,7 @@ require('telescope').setup {
     extensions = {
         file_browser = {
             theme = "ivy",
-            hijack_netrw = false,  -- disables netrw and use telescope-file-browser in its place
+            hijack_netrw = false, -- disables netrw and use telescope-file-browser in its place
             hidden = true,
         },
     },

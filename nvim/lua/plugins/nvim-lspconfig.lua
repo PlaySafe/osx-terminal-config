@@ -1,5 +1,5 @@
 require("mason").setup({
-        ui = {
+    ui = {
         icons = {
             package_installed = "",
             package_pending = "",
@@ -13,7 +13,7 @@ require("mason-lspconfig").setup {
 }
 
 -- See `:help vim.diagnostic.*` for documentation on any of the below functions
-local opts = { noremap=true, silent=true }
+local opts = { noremap = true, silent = true }
 vim.keymap.set('n', '<space>e', vim.diagnostic.open_float, opts)
 vim.keymap.set('n', '[d', vim.diagnostic.goto_prev, opts)
 vim.keymap.set('n', ']d', vim.diagnostic.goto_next, opts)
@@ -27,7 +27,7 @@ local on_attach = function(client, bufnr)
 
     -- Mappings.
     -- See `:help vim.lsp.*` for documentation on any of the below functions
-    local bufopts = { noremap=true, silent=true, buffer=bufnr }
+    local bufopts = { noremap = true, silent = true, buffer = bufnr }
     vim.keymap.set('n', 'gD', vim.lsp.buf.declaration, bufopts)
     vim.keymap.set('n', 'gd', vim.lsp.buf.definition, bufopts)
     vim.keymap.set('n', 'K', vim.lsp.buf.hover, bufopts)
@@ -43,6 +43,15 @@ local on_attach = function(client, bufnr)
     vim.keymap.set('n', '<space>ca', vim.lsp.buf.code_action, bufopts)
     vim.keymap.set('n', 'gr', vim.lsp.buf.references, bufopts)
     vim.keymap.set('n', '<space>=', vim.lsp.buf.format, bufopts)
+    if client.server_capabilities.documentFormattingProvider then
+        vim.api.nvim_create_autocmd({ "BufWritePre" }, {
+            group = vim.api.nvim_create_augroup('AUTO_FORMAT_CODE', {}),
+            pattern = '*',
+            callback = function()
+                vim.lsp.buf.format()
+            end
+        })
+    end
 end
 
 local lsp_flags = {
@@ -65,66 +74,73 @@ local lspconfig = require('lspconfig')
 -- lspconfig['cssmodules_ls'].setup = defaultLspSetup
 -- lspconfig['cucumber_language_server'].setup = defaultLspSetup
 -- lspconfig['dockerls'].setup = defaultLspSetup
--- lspconfig['golangci_lint_ls'].setup = defaultLspSetup
--- lspconfig['gopls'].setup {
---     flags = lsp_flags,
---     on_attach = on_attach,
---     settings = {
---         gopls = {
---             experimentalPostfixCompletions = true,
---             analyses = {
---                 unusedparams = true,
---                 shadow = true,
---             },
---             staticcheck = true,
---         },
---     },
--- }
+lspconfig['golangci_lint_ls'].setup = defaultLspSetup
+lspconfig['gopls'].setup {
+    flags = lsp_flags,
+    on_attach = on_attach,
+    settings = {
+        gopls = {
+            experimentalPostfixCompletions = true,
+            analyses = {
+                unusedparams = true,
+                shadow = true,
+            },
+            staticcheck = true,
+        },
+    },
+}
 -- lspconfig['groovyls'].setup = defaultLspSetup
 -- lspconfig['html'].setup = defaultLspSetup
--- lspconfig['jdtls'].setup {
---     flags = lsp_flags,
---     on_attach = on_attach,
---     capabilities = capabilities,
---     settings = {
---         ["codeLens.enable"] = true,
---         ["java.autobuild.enabled"] = true,
---         ["java.completion.enabled"] = true,
---         ["java.configuration.maven.globalSettings"] = vim.fs.normalize("$HOME/.m2/settings.xml"),
---         ["java.configuration.maven.userSettings"] = vim.fs.normalize("$HOME/.m2/settings.xml"),
---         ["java.format.settings.url"] = vim.fs.normalize("$HOME/.config/nvim/format/java_format.xml"),
---         ["java.home"] = vim.fs.normalize("$JAVA_HOME"),
---         ["java.implementationsCodeLens.enabled"] = true,
---         ["java.jdt.ls.java.home"] = vim.fs.normalize("$JAVA_HOME"),
---         ["java.maven.downloadSources"] = true,
---         ["java.maven.updateSnapshots"] = true,
---         ["java.progressReports.enabled"] = false,
---         ["java.referenceCodeLens.enabled"] = true,
---         ["java.saveActions.organizeImports"] = true,
---         ["java.server.launchMode"] = "Standard",
---         ["java.signatureHelp.description.enabled"] = true,
---         ["java.signatureHelp.enabled"] = true,
---         ["java.symbols.includeSourceMethodDeclarations"] = true,
---     },
--- }
+lspconfig['jdtls'].setup {
+    flags = lsp_flags,
+    on_attach = on_attach,
+    capabilities = capabilities,
+    settings = {
+        ["codeLens.enable"] = true,
+        ["java.autobuild.enabled"] = true,
+        ["java.completion.enabled"] = true,
+        ["java.configuration.maven.globalSettings"] = vim.fs.normalize("$HOME/.m2/settings.xml"),
+        ["java.configuration.maven.userSettings"] = vim.fs.normalize("$HOME/.m2/settings.xml"),
+        ["java.format.settings.url"] = vim.fs.normalize("$HOME/.config/nvim/format/java_format.xml"),
+        ["java.home"] = vim.fs.normalize("$JAVA_HOME"),
+        ["java.implementationsCodeLens.enabled"] = true,
+        ["java.jdt.ls.java.home"] = vim.fs.normalize("$JAVA_HOME"),
+        ["java.maven.downloadSources"] = true,
+        ["java.maven.updateSnapshots"] = true,
+        ["java.progressReports.enabled"] = false,
+        ["java.referenceCodeLens.enabled"] = true,
+        ["java.saveActions.organizeImports"] = true,
+        ["java.server.launchMode"] = "Standard",
+        ["java.signatureHelp.description.enabled"] = true,
+        ["java.signatureHelp.enabled"] = true,
+        ["java.symbols.includeSourceMethodDeclarations"] = true,
+        ["java.import.enabled"] = true,
+        ["java.rename.enabled"] = true,
+        ["java.contentProvider.preferred"] = 'fernflower',
+        ["java.source.organizeImports.starThreshold"] = 9999,
+        ["java.source.organizeImports.staticStarThreshold"] = 9999,
+    },
+}
 -- lspconfig['jsonls'].setup = defaultLspSetup
+lspconfig['marksman'].setup {}
 -- lspconfig['pyright'].setup = defaultLspSetup
 -- lspconfig['rome'].setup = defaultLspSetup
 -- lspconfig['sqls'].setup = defaultLspSetup
--- lspconfig['sumneko_lua'].setup {
---     flags = lsp_flags,
---     on_attach = on_attach,
---     capabilities = capabilities,
---     settings = {
---         Lua = {
---             diagnostics = {
---                 globals = { 'vim' }
---             }
---         }
---     },
--- }
+lspconfig['lua_ls'].setup {
+    flags = lsp_flags,
+    on_attach = on_attach,
+    capabilities = capabilities,
+    settings = {
+        Lua = {
+            diagnostics = {
+                globals = { 'vim' }
+            }
+        }
+    },
+}
 -- lspconfig['terraformls'].setup = defaultLspSetup
--- lspconfig['tsserver'].setup = defaultLspSetup
+lspconfig['tsserver'].setup {}
+
 -- lspconfig['vimls'].setup = defaultLspSetup
 -- lspconfig['yamlls'].setup {
 --     flags = lsp_flags,
