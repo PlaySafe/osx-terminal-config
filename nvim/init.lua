@@ -1,5 +1,4 @@
 vim.g.mapleader = " "
-vim.cmd [[colorscheme gruvbox]]
 
 local ensure_packer = function()
     local fn = vim.fn
@@ -13,11 +12,6 @@ local ensure_packer = function()
 end
 
 local packer_bootstrap = ensure_packer()
-require('plugins.nvim-treesitter')
-require('plugins.nvim-lspconfig')
-require('plugins.nvim-dap')
-require('plugins.cmp')
-require('plugins.telescope')
 
 vim.bo.syntax = 'on'
 
@@ -60,6 +54,13 @@ require('packer').startup(function(use)
         require('packer').sync()
     end
 end)
+
+vim.cmd [[colorscheme gruvbox]]
+require('plugins.nvim-treesitter')
+require('plugins.nvim-lspconfig')
+require('plugins.nvim-dap')
+require('plugins.cmp')
+require('plugins.telescope')
 
 vim.g.loaded_perl_provider = 0
 vim.g.loaded_ruby_provider = 0
