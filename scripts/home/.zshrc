@@ -51,7 +51,7 @@ export PATH="$PATH:$GOBIN"
 alias cobra="cobra-cli"
 
 # Config JDTLS
-export JAVA_HOME="/usr/local/Cellar/openjdk@17/17.0.5/libexec/openjdk.jdk/Contents/Home"
+export JAVA_HOME="/usr/local/Cellar/openjdk@17/17.0.6/libexec/openjdk.jdk/Contents/Home"
 export M2_HOME="$HOME/.m2"
 export MAVEN_HOME="/usr/local/Cellar/maven/3.8.6/libexec"
 export WORKSPACE="$HOME/workspace"
@@ -63,6 +63,7 @@ alias vim="nvim"
 alias myip="ifconfig en0 | grep inet | awk '{ print $2 }'"
 export PATH="/usr/local/opt/openjdk@17/bin:$PATH:$GOBIN"
 autoload -Uz compinit && compinit
+export CPPFLAGS="-I/usr/local/opt/openjdk@17/include"
 
 function git_branch() {
     branch=$(git branch --show-current 2> /dev/null)

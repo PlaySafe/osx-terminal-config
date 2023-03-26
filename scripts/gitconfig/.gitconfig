@@ -1,10 +1,10 @@
 [user]
-	email = kampanart.saardarewut@prudential.co.th
+	email = kampanart.saard@gmail.com
 	name = Kampanart Saardarewut
 [pull]
 	rebase = true
 [init]
-	defaultBranch = master
+	defaultBranch = main
 [core]
 	autocrlf = input
 	editor = nvim
