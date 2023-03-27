@@ -1,5 +1,5 @@
 local function orientation()
-    if vim.fn.winwidth(0) > 1400 then
+    if vim.fn.winwidth(0) > 100 then
         return 'horizontal'
     else
         return 'vertical'
@@ -11,16 +11,16 @@ local default_config = {
     layout_strategy = orientation(),
     layout_config = {
         vertical = {
-            width = 0.9,
-            height = 0.9,
+            width = 0.99,
+            height = 0.99,
             preview_cutoff = 40,
             prompt_position = "bottom",
         },
         horizontal = {
-            height = 0.9,
+            height = 0.99,
             preview_cutoff = 120,
             prompt_position = "top",
-            width = 0.9,
+            width = 0.99,
         }
     }
 }
