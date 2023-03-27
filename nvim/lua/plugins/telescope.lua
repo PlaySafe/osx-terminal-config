@@ -52,6 +52,7 @@ require('telescope').setup {
                 -- e.g. git_{create, delete, ...}_branch for the git_branches picker
                 ["<C-h>"] = actions.which_key,
                 ["<C-q>"] = actions.send_selected_to_qflist + actions.open_qflist,
+                ["<C-a>"] = actions.send_to_qflist + actions.open_qflist,
                 ["<C-o>"] = actions.open_qflist,
                 ["<TAB>"] = actions.toggle_selection + actions.move_selection_next,
                 ["<S-TAB>"] = actions.toggle_selection + actions.move_selection_previous,
