@@ -1,10 +1,20 @@
 vim.fn.sign_define("DapBreakpoint", { text = "", texthl = "Red", linehl = "NONE", numhl = "NONE", culhl = "NONE" })
-vim.fn.sign_define("DapBreakpointCondition", { text = "", texthl = "Yellow", linehl = "NONE", numhl = "NONE",
-    culhl = "NONE" })
+vim.fn.sign_define("DapBreakpointCondition", {
+    text = "",
+    texthl = "Yellow",
+    linehl = "NONE",
+    numhl = "NONE",
+    culhl = "NONE"
+})
 vim.fn.sign_define("DapLogPoint", { text = "", texthl = "White", linehl = "NONE", numhl = "NONE", culhl = "NONE" })
 vim.fn.sign_define("DapStopped", { text = "", texthl = "Blue", linehl = "NONE", numhl = "NONE", culhl = "NONE" })
-vim.fn.sign_define("DapBreakpointRejected", { text = "", texthl = "Grey", linehl = "NONE", numhl = "NONE",
-    culhl = "NONE" })
+vim.fn.sign_define("DapBreakpointRejected", {
+    text = "",
+    texthl = "Grey",
+    linehl = "NONE",
+    numhl = "NONE",
+    culhl = "NONE"
+})
 
 require("dapui").setup({
     icons = { expanded = "", collapsed = "", current_frame = "" },
@@ -73,8 +83,8 @@ require("dapui").setup({
         },
     },
     floating = {
-        max_height = nil, -- These can be integers or a float between 0 and 1.
-        max_width = nil, -- Floats will be treated as percentage of your screen.
+        max_height = nil,  -- These can be integers or a float between 0 and 1.
+        max_width = nil,   -- Floats will be treated as percentage of your screen.
         border = "single", -- Border style. Can be "single", "double" or "rounded"
         mappings = {
             close = { "q", "<Esc>" },
@@ -95,7 +105,38 @@ dap.listeners.after['event_terminated']['dap'] = function()
     require('dapui').close()
 end
 
-dap.adapters.delve = {
+dap.adapters.javascript = {
+    type = 'server',
+    host = '127.0.0.1',
+    port = '9999',
+    executable = {
+        command = '/Users/toomtarm/.local/share/nvim/mason/packages/js-debug-adapter/js-debug-adapter',
+        args = { '9999' }
+    }
+}
+dap.configurations.javascript = {
+    {
+        type = "javascript",
+        name = "Launch command in Debug Mode",
+        request = "launch",
+        program = '${file}',
+        sourceMaps = true,
+        protocol = 'inspector',
+        port = 9999,
+    },
+    {
+        type = "javascript",
+        name = "Attach command in Debug Mode",
+        request = "attach",
+        program = '${file}',
+        sourceMaps = true,
+        protocol = 'inspector',
+        port = 9999,
+    },
+
+}
+
+dap.adapters.go = {
     type = 'server',
     port = "${port}",
     executable = {
@@ -105,21 +146,14 @@ dap.adapters.delve = {
 }
 dap.configurations.go = {
     {
-        type = "delve",
-        name = "Launch the Application in Debug Mode (OpenAPI Only)",
-        request = "launch",
-        program = "${workspaceFolder}/cmd",
-        logLevel = "DEBUG",
-    },
-    {
-        type = "delve",
+        type = "go",
         name = "Launch the Application in Debug Mode",
         request = "launch",
         program = "${workspaceFolder}",
         logLevel = "DEBUG",
     },
     {
-        type = "delve",
+        type = "go",
         name = "Start this test file in Debug Mode", -- configuration for debugging test files
         request = "launch",
         mode = "test",
@@ -127,7 +161,7 @@ dap.configurations.go = {
     },
     -- works with go.mod packages and sub packages
     {
-        type = "delve",
+        type = "go",
         name = "Start all test files under the same directory",
         request = "launch",
         mode = "test",
@@ -135,35 +169,62 @@ dap.configurations.go = {
     }
 }
 
+-- dap.adapters.java = function(callback, config)
+--     M.execute_command({ command = 'vscode.java.startDebugSession' }, function(err0, port)
+--         assert(not err0, vim.inspect(err0))
+--         callback({ type = 'server', host = '127.0.0.1', port = port, })
+--     end)
+-- end
 dap.adapters.java = {
-    type = 'server',
-    port = "${port}",
-    executable = {
-        command = 'dlv',
-        args = { 'dap', '-l', '127.0.0.1:${port}' },
+    type = "executable",
+    -- type = "server",
+    command = "java",
+    args = {
+        "-jar",
+        -- "/Users/toomtarm/.local/share/nvim/mason/packages/java-debug-adapter/extension/server/com.microsoft.java.debug.plugin-0.44.0.jar",
+        "/Users/toomtarm/.local/manual/com.microsoft.java.debug.plugin-0.44.0.jar",
+        "--language-server"
     },
+    env = {
+        ["JAVA_HOME"] = "/usr/local/opt/openjdk@17"
+    },
+    cwd = "${workspaceFolder}",
+    -- port = port,
 }
 dap.configurations.java = {
     {
-        type = "java-debug-adapter",
-        name = "Launch the Application in Debug Mode",
-        request = "launch",
-        program = "${workspaceFolder}",
-        logLevel = "DEBUG",
+        type = 'java',
+        name = 'Attach debug mode to the running server',
+        request = 'attach',
+        hostName = '127.0.0.1',
+        port = 5005,
     },
     {
-        type = "java-debug-adapter",
-        name = "Start this test file in Debug Mode", -- configuration for debugging test files
-        request = "launch",
-        mode = "test",
-        program = "${file}"
+        type = 'java',
+        name = 'Debug Test (JUnit4)',
+        request = 'launch',
+        hostName = '127.0.0.1',
+        port = 5005,
     },
-    -- works with go.mod packages and sub packages
     {
-        type = "java-debug-adapter",
-        name = "Start all test files under the same directory",
-        request = "launch",
-        mode = "test",
-        program = "./${relativeFileDirname}"
-    }
+        type = 'java',
+        name = 'Debug Test (JUnit5)',
+        request = 'attach',
+        hostName = '127.0.0.1',
+        port = 5005,
+    },
+    -- {
+    --     type = "java-debug-adapter",
+    --     name = "Launch the Application in Debug Mode",
+    --     request = "launch",
+    --     program = "${workspaceFolder}",
+    --     logLevel = "DEBUG",
+    -- },
+    -- {
+    --     type = "java-debug-adapter",
+    --     name = "Start this test file in Debug Mode", -- configuration for debugging test files
+    --     request = "launch",
+    --     mode = "test",
+    --     program = "${file}"
+    -- },
 }

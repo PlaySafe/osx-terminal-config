@@ -52,6 +52,9 @@ local on_attach = function(client, bufnr)
             end
         })
     end
+    if (client.name == 'jdtls') then
+        require('jdtls').setup_dap({ hotcodereplace = 'auto' })
+    end
 end
 
 local lsp_flags = {
@@ -95,6 +98,12 @@ lspconfig['jdtls'].setup {
     flags = lsp_flags,
     on_attach = on_attach,
     capabilities = capabilities,
+    init_options = {
+        bundles = {
+            vim.fn.glob(
+                "$HOME/.m2/repository/com/microsoft/java/com.microsoft.java.debug.plugin/0.44.0/com.microsoft.java.debug.plugin-0.44.0.jar")
+        }
+    },
     settings = {
         ["codeLens.enable"] = true,
         ["java.autobuild.enabled"] = true,

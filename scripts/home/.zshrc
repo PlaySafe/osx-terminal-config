@@ -25,6 +25,14 @@ alias grlc="git reflog expire --expire=5.days.ago --expire-unreachable=now"
 
 alias ff="find . -iname"
 
+# Maven alias
+alias mcc="mvn clean compile"
+alias mcp="mvn clean package"
+alias mct="mvn clean test"
+alias mci="mvn clean install"
+alias mvndoc="mvn dependency:resolve -Dclassifier=javadoc"
+alias mvnsrc="mvn dependency:sources"
+
 # Docker alias config
 alias di="docker image"
 alias dcp="docker compose"
@@ -34,8 +42,8 @@ alias dr="docker run"
 alias dbp="docker builder prune"
 
 # Kubernetes
-alias mnk="minikube"
-alias kcl="kubectl"
+alias mkc="minikube"
+alias kc="kubectl"
 
 # Brew alias config
 alias bug="brew upgrade"

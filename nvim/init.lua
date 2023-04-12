@@ -91,7 +91,7 @@ vim.o.wildmode = 'longest:list:full'
 vim.o.wildmenu = true  --Visual autocomplete for command menu
 vim.o.showmatch = true --Highlight matching [{()}]
 vim.o.encoding = 'utf-8'
-vim.o.wrap = true
+vim.o.wrap = false
 vim.o.formatoptions = tcqrn1
 vim.o.hlsearch = true
 vim.o.cmdheight = 1
@@ -155,70 +155,71 @@ vim.opt.listchars = { tab = '▸ ', eol = '↲', space = '·', trail = '·' }
 vim.keymap.set('n', '<leader><Tab>', 'gt')
 vim.keymap.set('n', '<leader><S-Tab>', 'gT')
 
+local noremap = { noremap = true, silent = true };
 --SEARCHING
-vim.keymap.set('n', '<ESC>', '<cmd>noh<CR>', nil)
-vim.keymap.set('n', '<leader>.', '<cmd>Telescope file_browser<CR>', nil)
-vim.keymap.set('n', '<leader>,', '<cmd>Telescope find_files<CR>', nil)
-vim.keymap.set('n', '<leader>F', '<cmd>Telescope live_grep<CR>', nil)
-vim.keymap.set('n', '<leader>fb', '<cmd>Telescope buffers<CR>', nil)
-vim.keymap.set('n', '<leader>?', '<cmd>Telescope help_tags<CR>', nil)
-vim.keymap.set('n', '<leader>m', '<cmd>Telescope marks<CR>', nil)
-vim.keymap.set('n', '<leader>j', '<cmd>Telescope jumplist<CR>', nil)
-vim.keymap.set('n', '<leader>R', '<cmd>Telescope registers<CR>', nil)
-vim.keymap.set('n', '<leader>;', '<cmd>Telescope commands<CR>', nil)
-vim.keymap.set('n', '<leader>t', function() require("harpoon.mark").add_file() end, nil)
-vim.keymap.set('n', '<leader>e', function() require("harpoon.ui").toggle_quick_menu() end, nil)
-vim.keymap.set('n', '<leader>n', function() require("harpoon.ui").nav_next() end, nil)
-vim.keymap.set('n', '<leader>N', function() require("harpoon.ui").nav_prev() end, nil)
+vim.keymap.set('n', '<ESC>', [[<cmd>noh<CR>]], noremap)
+vim.keymap.set('n', '<leader>/', [[<cmd>Telescope file_browser<CR>]], noremap)
+vim.keymap.set('n', '<leader>.', [[<cmd>Telescope file_browser path=%:p:h select_buffer=true<CR>]], noremap)
+vim.keymap.set('n', '<leader>,', [[<cmd>lua require('telescope.builtin').find_files()<CR>]], noremap)
+vim.keymap.set('n', '<leader>F', [[<cmd>lua require('telescope.builtin').live_grep()<CR>]], noremap)
+vim.keymap.set('n', '<leader>fb', [[<cmd>lua require('telescope.builtin').buffers()<CR>]], noremap)
+vim.keymap.set('n', '<leader>?', [[<cmd>lua require('telescope.builtin').help_tags()<CR>]], noremap)
+vim.keymap.set('n', '<leader>m', [[<cmd>lua require('telescope.builtin').marks()<CR>]], noremap)
+vim.keymap.set('n', '<leader>j', [[<cmd>lua require('telescope.builtin').jumplist()<CR>]], noremap)
+vim.keymap.set('n', '<leader>R', [[<cmd>lua require('telescope.builtin').registers()<CR>]], noremap)
+vim.keymap.set('n', '<leader>;', [[<cmd>lua require('telescope.builtin').commands()<CR>]], noremap)
+vim.keymap.set('n', '<leader>t', [[<cmd>lua require("harpoon.mark").add_file()<CR>]], noremap)
+vim.keymap.set('n', '<leader>e', [[<cmd>lua require("harpoon.ui").toggle_quick_menu()<CR>]], noremap)
 
 --VISUALIZE TABS AND NEWLINES
-vim.keymap.set('n', '<F12>', '<cmd>set list!<CR>', nil)
-vim.keymap.set('i', '<F12>', '<cmd>set list!<CR>', nil)
-vim.keymap.set('n', '<leader><Up>', '<cmd>resize -10<CR>', nil)
-vim.keymap.set('n', '<leader><Down>', '<cmd>resize +10<CR>', nil)
-vim.keymap.set('n', '<leader><Left>', '<cmd>vertical resize -10<CR>', nil)
-vim.keymap.set('n', '<leader><Right>', '<cmd>vertical resize +10<CR>', nil)
+vim.keymap.set('n', '<F12>', [[<cmd>set list!<CR>]], noremap)
+vim.keymap.set('i', '<F12>', [[<cmd>set list!<CR>]], noremap)
+vim.keymap.set('n', '<leader><Up>', '[[<cmd>resize -10<CR>]]', noremap)
+vim.keymap.set('n', '<leader><Down>', '[[<cmd>resize +10<CR>]]', noremap)
+vim.keymap.set('n', '<leader><Left>', '[[<cmd>vertical resize -10<CR>]]', noremap)
+vim.keymap.set('n', '<leader><Right>', '[[<cmd>vertical resize +10<CR>]]', noremap)
 
 --PROJECT STRUCTURE
-vim.keymap.set('n', '<leader>+', '<cmd>foldopen<CR>', nil)
-vim.keymap.set('n', '<leader>-', '<cmd>foldclose<CR>', nil)
-vim.keymap.set('n', '<F1>', '<cmd>TagbarToggle<CR>', nil)
+vim.keymap.set('n', '<leader>+', '<cmd>foldopen<CR>', noremap)
+vim.keymap.set('n', '<leader>-', '<cmd>foldclose<CR>', noremap)
+vim.keymap.set('n', '<F1>', '<cmd>TagbarToggle<CR>', noremap)
 
 --OTHERS
-vim.keymap.set('n', '<leader>o', 'O<ESC>j', nil)
-vim.keymap.set('n', '<leader>w', '<cmd>bd<CR>', nil)
+vim.keymap.set('n', '<leader>o', 'O<ESC>j', noremap)
+vim.keymap.set('n', '<leader>w', [[<cmd>w <CR> bd<CR>]], noremap)
 
 --LSP Config
-vim.keymap.set('n', '<leader>gd', function() vim.lsp.buf.definition() end, nil)
-vim.keymap.set('n', '<leader>gi', function() vim.lsp.buf.implementation() end, nil)
-vim.keymap.set('n', '<leader>gsh', function() vim.lsp.buf.signature_help() end, nil)
-vim.keymap.set('n', '<leader>grr', function() vim.lsp.buf.references() end, nil)
-vim.keymap.set('n', '<leader>grn', function() vim.lsp.buf.rename() end, nil)
-vim.keymap.set('n', '<leader>gh', function() vim.lsp.buf.hover() end, nil)
-vim.keymap.set('n', '<leader>gca', function() vim.lsp.buf.code_action() end, nil)
-vim.keymap.set('n', '<leader>gsd', function() vim.lsp.diagnostic.show_line_diagnostic() end, nil)
-vim.keymap.set('n', '<leader>gn', function() vim.lsp.buf.goto_next() end, nil)
+vim.keymap.set('n', '<leader>==', [[<cmd>lua vim.lsp.buf.format()<CR>]], noremap)
+vim.keymap.set('n', '<leader>gd', [[<cmd>lua vim.lsp.buf.definition()<CR>]], noremap)
+vim.keymap.set('n', '<leader>gi', [[<cmd>lua vim.lsp.buf.implementation()<CR>]], noremap)
+vim.keymap.set('n', '<leader>gh', [[<cmd>lua vim.lsp.buf.hover()<CR>]], noremap)
+vim.keymap.set('n', '<leader>gn', [[<cmd>lua vim.lsp.buf.goto_next()<CR>]], noremap)
+vim.keymap.set('n', '<leader>gsh', [[<cmd>lua vim.lsp.buf.signature_help()<CR>]], noremap)
+vim.keymap.set('n', '<leader>grr', [[<cmd>lua vim.lsp.buf.references()<CR>]], noremap)
+vim.keymap.set('n', '<leader>grn', [[<cmd>lua vim.lsp.buf.rename()<CR>]], noremap)
+vim.keymap.set('n', '<leader>gca', [[<cmd>lua vim.lsp.buf.code_action()<CR>]], noremap)
+vim.keymap.set('n', '<leader>gsd', [[<cmd>lua vim.lsp.diagnostic.show_line_diagnostic()<CR>]], noremap)
 
 --DAP (Debug Adapter Protocol)
-vim.keymap.set('n', '<leader>dD', function() require('dap').clear_breakpoints() end, nil)
-vim.keymap.set('n', '<leader>db', function() require('dap').toggle_breakpoint() end, nil)
-vim.keymap.set('n', '<leader>dc', function() require('dap').set_breakpoint(vim.fn.input("Breakpoint condition: ")) end,
-    nil)
+vim.keymap.set('n', '<leader>dD', [[<cmd>lua require('dap').clear_breakpoints()<CR>]], noremap)
+vim.keymap.set('n', '<leader>db', [[<cmd>lua require('dap').toggle_breakpoint()<CR>]], noremap)
+vim.keymap.set('n', '<leader>dc', [[<cmd>lua require('dap').set_breakpoint(vim.fn.input("Condition: "))]], noremap)
 vim.keymap.set('n', '<leader>dI',
-    function() require('dap').ui.variables.hover(function() return vim.fn.expand("<cexpr>") end) end, nil)
-vim.keymap.set('n', '<leader>di', function() require('dap').step_into() end, nil)
-vim.keymap.set('n', '<leader>do', function() require('dap').step_over() end, nil)
+    [[<cmd>lua require('dap').ui.variables.hover(function() return vim.fn.expand("<cexpr>") end)]], noremap)
+vim.keymap.set('n', '<leader>di', [[<cmd>lua require('dap').step_into()<CR>]], noremap)
+vim.keymap.set('n', '<leader>do', [[<cmd>lua require('dap').step_over()<CR>]], noremap)
 
-vim.keymap.set('n', '<leader>d/', function() require('dap').repl.toggle() end, nil)
-vim.keymap.set('n', '<leader>d^', function() require('dap').repl.run_first() end, nil)
-vim.keymap.set('n', '<leader>d$', function() require('dap').repl.run_last() end, nil)
-vim.keymap.set('n', '<leader>dn', function() require('dap').continue() end, nil)
-vim.keymap.set('n', '<leader>dv', function() require('telescope').extensions.dap.variables {} end, nil)
-vim.keymap.set('n', '<leader>dB', function() require('telescope').extensions.dap.list_breakpoints {} end, nil)
+vim.keymap.set('n', '<leader>d/', [[<cmd>lua require('dap').repl.toggle()<CR>]], noremap)
+vim.keymap.set('n', '<leader>d^', [[<cmd>lua require('dap').repl.run_first()<CR>]], noremap)
+vim.keymap.set('n', '<leader>d$', [[<cmd>lua require('dap').repl.run_last()<CR>]], noremap)
+vim.keymap.set('n', '<leader>dn', [[<cmd>lua require('dap').continue()<CR>]], noremap)
+vim.keymap.set("n", "<leader>dx", [[<cmd>lua require('dap').disconnect(); require('dap').close()<CR>]], noremap)
 
-vim.keymap.set('n', '<leader>d?', function() require('telescope').extensions.dap.configurations {} end, nil)
-vim.keymap.set('n', '<leader>d:', function() require('telescope').extensions.dap.commands {} end, nil)
-vim.keymap.set('n', '<leader>df', function() require('telescope').extensions.dap.frames {} end, nil)
+vim.keymap.set('n', '<leader>dv', [[<cmd>lua require('telescope').extensions.dap.variables()<CR>]], noremap)
+vim.keymap.set('n', '<leader>dB', [[<cmd>lua require('telescope').extensions.dap.list_breakpoints()<CR>]], noremap)
+vim.keymap.set('n', '<leader>d?', [[<cmd>lua require('telescope').extensions.dap.configurations()<CR>]], noremap)
+vim.keymap.set('n', '<leader>d:', [[<cmd>lua require('telescope').extensions.dap.commands()<CR>]], noremap)
+vim.keymap.set('n', '<leader>df', [[<cmd>lua require('telescope').extensions.dap.frames()<CR>]], noremap)
 
 
 -- Specific Command
@@ -232,18 +233,12 @@ vim.api.nvim_create_autocmd({ "BufWritePre" }, {
 vim.api.nvim_create_autocmd({ "BufWritePre" }, {
     group = vim.api.nvim_create_augroup('FORMAT_GOLANG_CODE', {}),
     pattern = '*.go',
-    callback = function()
-        vim.lsp.buf.code_action({
-            apply = true
-        })
-    end
+    callback = [[<cmd>lua vim.lsp.buf.code_action({ apply = true })<CR>]]
 })
 
 vim.api.nvim_create_autocmd({ "FileType" }, {
     pattern = 'dap-repl',
-    callback = function()
-        require('dap.ext.autocompl').attach()
-    end
+    callback = [[<cmd>lua require('dap.ext.autocompl').attach()<CR>]]
 })
 
 vim.api.nvim_create_autocmd({ "BufReadPost", "BufNewFile" }, {

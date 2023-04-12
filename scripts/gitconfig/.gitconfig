@@ -17,3 +17,5 @@
 [mergetool "vimdiff"]
     keepBackup = false
     layout = "LOCAL,BASE,REMOTE / MERGED"
+[credential]
+	helper = store
