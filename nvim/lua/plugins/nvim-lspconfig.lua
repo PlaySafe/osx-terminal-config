@@ -48,6 +48,7 @@ local on_attach = function(client, bufnr)
             group = vim.api.nvim_create_augroup('AUTO_FORMAT_CODE', {}),
             pattern = '*',
             callback = function()
+                vim.lsp.buf.code_action({ context = { only = { 'source.organizeImports' } }, apply = true })
                 vim.lsp.buf.format()
             end
         })
@@ -85,6 +86,10 @@ lspconfig['gopls'].setup {
             experimentalPostfixCompletions = true,
             analyses = {
                 unusedparams = true,
+                unusedimport = true,
+                unusedwrite = true,
+                unusedfuncs = true,
+                undeclaredname = true,
                 shadow = true,
             },
             staticcheck = true,
