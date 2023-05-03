@@ -230,11 +230,11 @@ vim.api.nvim_create_autocmd({ "BufWritePre" }, {
     command = [[%s/\s\+$//e]],
 })
 
-vim.api.nvim_create_autocmd({ "BufWritePre" }, {
-    group = vim.api.nvim_create_augroup('FORMAT_GOLANG_CODE', {}),
-    pattern = '*.go',
-    callback = [[<cmd>lua vim.lsp.buf.code_action({ apply = true })<CR>]]
-})
+-- vim.api.nvim_create_autocmd({ "BufWritePre" }, {
+--     group = vim.api.nvim_create_augroup('FORMAT_GOLANG_CODE', {}),
+--     pattern = '*.go',
+--     callback = [[<cmd>lua vim.lsp.buf.code_action({ apply = true })<CR>]]
+-- })
 
 vim.api.nvim_create_autocmd({ "FileType" }, {
     pattern = 'dap-repl',

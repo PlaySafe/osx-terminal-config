@@ -77,7 +77,6 @@ local lspconfig = require('lspconfig')
 -- lspconfig['cssmodules_ls'].setup = defaultLspSetup
 -- lspconfig['cucumber_language_server'].setup = defaultLspSetup
 -- lspconfig['dockerls'].setup = defaultLspSetup
-lspconfig['golangci_lint_ls'].setup = defaultLspSetup
 lspconfig['gopls'].setup {
     flags = lsp_flags,
     on_attach = on_attach,
