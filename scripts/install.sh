@@ -16,6 +16,7 @@ brew install luarocks
 brew install tree
 brew install tree-sitter
 brew install openjdk@17
+sudo ln -sfn /usr/local/opt/openjdk@17/libexec/openjdk.jdk /Library/Java/JavaVirtualMachines/openjdk.jdk
 
 # maven config
 brew install maven

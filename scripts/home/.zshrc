@@ -30,6 +30,8 @@ alias mcc="mvn clean compile"
 alias mcp="mvn clean package"
 alias mct="mvn clean test"
 alias mci="mvn clean install"
+alias mdt="mvn dependency:tree"
+alias mdl="mvn dependency:list"
 alias mvndoc="mvn dependency:resolve -Dclassifier=javadoc"
 alias mvnsrc="mvn dependency:sources"
 
@@ -59,7 +61,7 @@ export PATH="$PATH:$GOBIN"
 alias cobra="cobra-cli"
 
 # Config JDTLS
-export JAVA_HOME="/usr/local/Cellar/openjdk@17/17.0.6/libexec/openjdk.jdk/Contents/Home"
+export JAVA_HOME=$(/usr/libexec/java_home)
 export M2_HOME="$HOME/.m2"
 export MAVEN_HOME="/usr/local/Cellar/maven/3.8.6/libexec"
 export WORKSPACE="$HOME/workspace"
