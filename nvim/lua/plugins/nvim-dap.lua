@@ -108,9 +108,9 @@ end
 dap.adapters.javascript = {
     type = 'server',
     host = '127.0.0.1',
-    port = '9999',
+    port = '$port',
     executable = {
-        command = '/Users/toomtarm/.local/share/nvim/mason/packages/js-debug-adapter/js-debug-adapter',
+        command = vim.loop.os_homedir() .. '/.local/share/nvim/mason/packages/js-debug-adapter/js-debug-adapter',
         args = { '9999' }
     }
 }
@@ -122,7 +122,11 @@ dap.configurations.javascript = {
         program = '${file}',
         sourceMaps = true,
         protocol = 'inspector',
-        port = 9999,
+        port = function()
+            return vim.ui.input({ prompt = 'Port: ' }, function(input)
+                return input
+            end)
+        end
     },
     {
         type = "javascript",
@@ -131,16 +135,38 @@ dap.configurations.javascript = {
         program = '${file}',
         sourceMaps = true,
         protocol = 'inspector',
-        port = 9999,
+        port = function()
+            return vim.ui.input({ prompt = 'Port: ' }, function(input)
+                return input
+            end)
+        end
     },
+}
 
+dap.adapters.typescript = {
+    type = 'executable',
+    command = "node",
+    args = { vim.loop.os_homedir() .. '/.local/share/nvim/mason/bin/chrome-debug-adapter' },
+}
+dap.configurations.typescript = {
+    {
+        type = 'typescript',
+        request = 'attach',
+        name = 'Attach to TypeScript server',
+        sourceMaps = true,
+        trace = true,
+        protocol = 'inspector',
+        host = 'localhost',
+        port = 9222,
+        -- webRoot = "${workspaceFolder}",
+    },
 }
 
 dap.adapters.go = {
     type = 'server',
     port = "${port}",
     executable = {
-        command = 'dlv',
+        command = vim.loop.os_homedir() .. '/.local/share/nvim/mason/bin/dlv',
         args = { 'dap', '-l', '127.0.0.1:${port}' },
     },
 }
@@ -181,8 +207,7 @@ dap.adapters.java = {
     command = "java",
     args = {
         "-jar",
-        -- "/Users/toomtarm/.local/share/nvim/mason/packages/java-debug-adapter/extension/server/com.microsoft.java.debug.plugin-0.44.0.jar",
-        "/Users/toomtarm/.local/manual/com.microsoft.java.debug.plugin-0.44.0.jar",
+        vim.loop.os_homedir() .. "/.local/manual/com.microsoft.java.debug.plugin-0.44.0.jar",
         "--language-server"
     },
     env = {

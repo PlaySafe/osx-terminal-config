@@ -223,22 +223,10 @@ vim.keymap.set('n', '<leader>df', [[<cmd>lua require('telescope').extensions.dap
 
 
 -- Specific Command
-
 vim.api.nvim_create_autocmd({ "BufWritePre" }, {
     group = vim.api.nvim_create_augroup('TRIM_WHITE_SPACE_ON_SAVE', {}),
     pattern = '*',
     command = [[%s/\s\+$//e]],
-})
-
--- vim.api.nvim_create_autocmd({ "BufWritePre" }, {
---     group = vim.api.nvim_create_augroup('FORMAT_GOLANG_CODE', {}),
---     pattern = '*.go',
---     callback = [[<cmd>lua vim.lsp.buf.code_action({ apply = true })<CR>]]
--- })
-
-vim.api.nvim_create_autocmd({ "FileType" }, {
-    pattern = 'dap-repl',
-    callback = [[<cmd>lua require('dap.ext.autocompl').attach()<CR>]]
 })
 
 vim.api.nvim_create_autocmd({ "BufReadPost", "BufNewFile" }, {
