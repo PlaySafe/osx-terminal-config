@@ -96,8 +96,22 @@ lspconfig['gopls'].setup {
         },
     },
 }
+
+lspconfig['rust_analyzer'].setup {
+    flags = lsp_flags,
+    on_attach = on_attach,
+    settings = {
+        ['rust-analyzer'] = {
+            diagnostics = {
+                enable = false,
+            }
+        }
+    },
+}
+
 -- lspconfig['groovyls'].setup = defaultLspSetup
 -- lspconfig['html'].setup = defaultLspSetup
+
 lspconfig['jdtls'].setup {
     flags = lsp_flags,
     on_attach = on_attach,
