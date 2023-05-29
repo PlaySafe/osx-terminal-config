@@ -121,6 +121,8 @@ vim.opt.foldmethod = 'indent' --Fold based on indent level
 vim.opt.scrolloff = 8                            --The number of lines display above and below the cursor
 vim.opt.backspace = { 'indent', 'eol', 'start' } --The behavior of pressing the backspace key
 vim.opt.cursorline = true                        --Display horizontal line of current line
+vim.opt.cursorcolumn = true                      --Display vertical line of current line
+
 
 
 --OTHERS
@@ -188,24 +190,11 @@ vim.keymap.set('n', '<F1>', '<cmd>TagbarToggle<CR>', noremap)
 vim.keymap.set('n', '<leader>o', 'O<ESC>j', noremap)
 vim.keymap.set('n', '<leader>w', [[<cmd>w <CR> bd<CR>]], noremap)
 
---LSP Config
-vim.keymap.set('n', '<leader>==', [[<cmd>lua vim.lsp.buf.format()<CR>]], noremap)
-vim.keymap.set('n', '<leader>gd', [[<cmd>lua vim.lsp.buf.definition()<CR>]], noremap)
-vim.keymap.set('n', '<leader>gi', [[<cmd>lua vim.lsp.buf.implementation()<CR>]], noremap)
-vim.keymap.set('n', '<leader>gh', [[<cmd>lua vim.lsp.buf.hover()<CR>]], noremap)
-vim.keymap.set('n', '<leader>gn', [[<cmd>lua vim.lsp.buf.goto_next()<CR>]], noremap)
-vim.keymap.set('n', '<leader>gsh', [[<cmd>lua vim.lsp.buf.signature_help()<CR>]], noremap)
-vim.keymap.set('n', '<leader>grr', [[<cmd>lua vim.lsp.buf.references()<CR>]], noremap)
-vim.keymap.set('n', '<leader>grn', [[<cmd>lua vim.lsp.buf.rename()<CR>]], noremap)
-vim.keymap.set('n', '<leader>gca', [[<cmd>lua vim.lsp.buf.code_action()<CR>]], noremap)
-vim.keymap.set('n', '<leader>gsd', [[<cmd>lua vim.lsp.diagnostic.show_line_diagnostic()<CR>]], noremap)
-
 --DAP (Debug Adapter Protocol)
 vim.keymap.set('n', '<leader>dD', [[<cmd>lua require('dap').clear_breakpoints()<CR>]], noremap)
 vim.keymap.set('n', '<leader>db', [[<cmd>lua require('dap').toggle_breakpoint()<CR>]], noremap)
 vim.keymap.set('n', '<leader>dc', [[<cmd>lua require('dap').set_breakpoint(vim.fn.input("Condition: "))]], noremap)
-vim.keymap.set('n', '<leader>dI',
-    [[<cmd>lua require('dap').ui.variables.hover(function() return vim.fn.expand("<cexpr>") end)]], noremap)
+vim.keymap.set('n', '<leader>dI', [[<cmd>lua require('dap').ui.variables.hover(function() return vim.fn.expand("<cexpr>") end)]], noremap)
 vim.keymap.set('n', '<leader>di', [[<cmd>lua require('dap').step_into()<CR>]], noremap)
 vim.keymap.set('n', '<leader>do', [[<cmd>lua require('dap').step_over()<CR>]], noremap)
 
@@ -227,11 +216,4 @@ vim.api.nvim_create_autocmd({ "BufWritePre" }, {
     group = vim.api.nvim_create_augroup('TRIM_WHITE_SPACE_ON_SAVE', {}),
     pattern = '*',
     command = [[%s/\s\+$//e]],
-})
-
-vim.api.nvim_create_autocmd({ "BufReadPost", "BufNewFile" }, {
-    pattern = '*',
-    callback = function()
-        vim.opt.cursorcolumn = true
-    end
 })
