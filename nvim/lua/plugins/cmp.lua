@@ -1,10 +1,57 @@
 local cmp = require('cmp')
+local kind_icons = {
+    Class = "ﴯ",
+    Color = "",
+    Constant = "",
+    Constructor = "",
+    Enum = "",
+    EnumMember = "",
+    Event = "",
+    Field = "",
+    File = "",
+    Folder = "",
+    Function = "",
+    Interface = "",
+    Keyword = "",
+    Method = "",
+    Module = "",
+    Operator = "",
+    Property = "ﰠ",
+    Reference = "",
+    Snippet = "",
+    Struct = "",
+    Text = "",
+    TypeParameter = "",
+    Unit = "",
+    Value = "",
+    Variable = "",
+}
 
 cmp.setup({
     snippet = {
         -- REQUIRED - you must specify a snippet engine
         expand = function(args)
             vim.fn["UltiSnips#Anon"](args.body) -- For `ultisnips` users.
+        end,
+    },
+    formatting = {
+        format = function(entry, vim_item)
+            -- Kind icons
+            vim_item.kind = string.format("%s %s", kind_icons[vim_item.kind], vim_item.kind) --Concatonate the icons with name of the item-kind
+            vim_item.menu = ({
+                nvim_lsp = "[LSP]",
+                spell = "[Spellings]",
+                zsh = "[Zsh]",
+                buffer = "[Buffer]",
+                ultisnips = "[Snip]",
+                treesitter = "[Treesitter]",
+                calc = "[Calculator]",
+                nvim_lua = "[Lua]",
+                path = "[Path]",
+                nvim_lsp_signature_help = "[Signature]",
+                cmdline = "[Vim Command]"
+            })[entry.source.name]
+            return vim_item
         end,
     },
     preselect = cmp.PreselectMode.None,
