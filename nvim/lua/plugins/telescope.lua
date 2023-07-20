@@ -27,7 +27,8 @@ local default_config = {
 
 local actions = require('telescope.actions')
 local fb_actions = require "telescope".extensions.file_browser.actions
-require('telescope').setup {
+local telescope = require('telescope')
+telescope.setup {
     defaults = {
         -- Default configuration for telescope goes here:
         -- config_key = value,
@@ -106,6 +107,7 @@ require('telescope').setup {
         lsp_workspace_symbols = default_config,
         man_pages = default_config,
         marks = default_config,
+        media_files = default_config,
         oldfiles = default_config,
         pickers = default_config,
         quickfix = default_config,
@@ -128,8 +130,16 @@ require('telescope').setup {
             hijack_netrw = false, -- disables netrw and use telescope-file-browser in its place
             hidden = true,
         },
+        media_files = {
+            -- filetypes whitelist
+            -- defaults to {"png", "jpg", "mp4", "webm", "pdf"}
+            filetypes = { "png", "jpg", "pdf", "webm", "mp4" },
+            -- find command (defaults to `fd`)
+            find_cmd = "rg",
+        },
     },
 
 }
-require("telescope").load_extension("file_browser")
-require("telescope").load_extension("dap")
+telescope.load_extension("file_browser")
+telescope.load_extension("dap")
+telescope.load_extension("media_files")

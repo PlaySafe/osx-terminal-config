@@ -48,6 +48,8 @@ require('packer').startup(function(use)
     use { 'rcarriga/nvim-dap-ui', requires = { 'mfussenegger/nvim-dap' } }
     use { 'nvim-telescope/telescope-file-browser.nvim', requires = { 'nvim-telescope/telescope.nvim' } }
     use { 'nvim-telescope/telescope-dap.nvim', requires = { 'nvim-telescope/telescope.nvim' } }
+    use { 'nvim-telescope/telescope-media-files.nvim', requires = { 'nvim-telescope/telescope.nvim',
+        'nvim-lua/popup.nvim', 'nvim-lua/plenary.nvim' } }
     -- Automatically set up your configuration after cloning packer.nvim
     -- Put this at the end after all plugins
     if packer_bootstrap then
@@ -163,6 +165,7 @@ vim.keymap.set('n', '<ESC>', [[<cmd>noh<CR>]], noremap)
 vim.keymap.set('n', '<leader>/', [[<cmd>Telescope file_browser<CR>]], noremap)
 vim.keymap.set('n', '<leader>.', [[<cmd>Telescope file_browser path=%:p:h select_buffer=true<CR>]], noremap)
 vim.keymap.set('n', '<leader>,', [[<cmd>lua require('telescope.builtin').find_files()<CR>]], noremap)
+vim.keymap.set('n', '<leader>\'', [[<cmd>Telescope media_files<CR>]], noremap)
 vim.keymap.set('n', '<leader>F', [[<cmd>lua require('telescope.builtin').live_grep()<CR>]], noremap)
 vim.keymap.set('n', '<leader>fb', [[<cmd>lua require('telescope.builtin').buffers()<CR>]], noremap)
 vim.keymap.set('n', '<leader>?', [[<cmd>lua require('telescope.builtin').help_tags()<CR>]], noremap)
@@ -194,7 +197,8 @@ vim.keymap.set('n', '<leader>w', [[<cmd>w <CR> bd<CR>]], noremap)
 vim.keymap.set('n', '<leader>dD', [[<cmd>lua require('dap').clear_breakpoints()<CR>]], noremap)
 vim.keymap.set('n', '<leader>db', [[<cmd>lua require('dap').toggle_breakpoint()<CR>]], noremap)
 vim.keymap.set('n', '<leader>dc', [[<cmd>lua require('dap').set_breakpoint(vim.fn.input("Condition: "))]], noremap)
-vim.keymap.set('n', '<leader>dI', [[<cmd>lua require('dap').ui.variables.hover(function() return vim.fn.expand("<cexpr>") end)]], noremap)
+vim.keymap.set('n', '<leader>dI',
+    [[<cmd>lua require('dap').ui.variables.hover(function() return vim.fn.expand("<cexpr>") end)]], noremap)
 vim.keymap.set('n', '<leader>di', [[<cmd>lua require('dap').step_into()<CR>]], noremap)
 vim.keymap.set('n', '<leader>do', [[<cmd>lua require('dap').step_over()<CR>]], noremap)
 
