@@ -45,7 +45,7 @@ require('packer').startup(function(use)
     use { 'nvim-treesitter/nvim-treesitter', run = ':TSUpdate' }
     use { 'ThePrimeagen/harpoon', requires = { 'nvim-lua/popup.nvim', 'nvim-lua/plenary.nvim' } }
     use { 'honza/vim-snippets', requires = { 'SirVer/ultisnips' } }
-    use { 'rcarriga/nvim-dap-ui', requires = { 'mfussenegger/nvim-dap' } }
+    use { 'mfussenegger/nvim-jdtls', requires = { 'rcarriga/nvim-dap-ui', requires = { 'mfussenegger/nvim-dap' } } }
     use { 'nvim-telescope/telescope-file-browser.nvim', requires = { 'nvim-telescope/telescope.nvim' } }
     use { 'nvim-telescope/telescope-dap.nvim', requires = { 'nvim-telescope/telescope.nvim' } }
     use { 'nvim-telescope/telescope-media-files.nvim', requires = { 'nvim-telescope/telescope.nvim',
@@ -192,6 +192,10 @@ vim.keymap.set('n', '<F1>', '<cmd>TagbarToggle<CR>', noremap)
 --OTHERS
 vim.keymap.set('n', '<leader>o', 'O<ESC>j', noremap)
 vim.keymap.set('n', '<leader>w', [[<cmd>w <CR> bd<CR>]], noremap)
+vim.keymap.set('n', '<C-j>', '<C-w>j', noremap)
+vim.keymap.set('n', '<C-h>', '<C-w>h', noremap)
+vim.keymap.set('n', '<C-k>', '<C-w>k', noremap)
+vim.keymap.set('n', '<C-l>', '<C-w>l', noremap)
 
 --DAP (Debug Adapter Protocol)
 vim.keymap.set('n', '<leader>dD', [[<cmd>lua require('dap').clear_breakpoints()<CR>]], noremap)
