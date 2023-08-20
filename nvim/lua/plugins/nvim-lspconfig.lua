@@ -10,7 +10,7 @@ vim.keymap.set('n', '<space>q', vim.diagnostic.setloclist, opts)
 vim.keymap.set('n', 'gD', vim.lsp.buf.declaration, opts)
 vim.keymap.set('n', 'gd', vim.lsp.buf.definition, opts)
 vim.keymap.set('n', 'gh', vim.lsp.buf.hover, opts)
-vim.keymap.set('n', 'gi', vim.lsp.buf.implementation, opts)
+vim.keymap.set('n', 'gI', vim.lsp.buf.implementation, opts)
 vim.keymap.set('n', 'gsh', vim.lsp.buf.signature_help, opts)
 vim.keymap.set('n', 'gwa', vim.lsp.buf.add_workspace_folder, opts)
 vim.keymap.set('n', 'gwr', vim.lsp.buf.remove_workspace_folder, opts)
@@ -256,10 +256,16 @@ local servers = {
         flags = lsp_flags,
         on_attach = on_attach,
         capabilities = capabilities,
+        initializationOptions = {
+            bundles = {
+                vim.loop.os_homedir() ..
+                "/.local/share/nvim/mason/share/java-debug-adapter/com.microsoft.java.debug.plugin.jar",
+            }
+        },
         init_options = {
             bundles = {
-                vim.fn.glob(
-                    "$HOME/.m2/repository/com/microsoft/java/com.microsoft.java.debug.plugin/0.44.0/com.microsoft.java.debug.plugin-0.44.0.jar")
+                vim.loop.os_homedir() ..
+                "/.local/share/nvim/mason/share/java-debug-adapter/com.microsoft.java.debug.plugin.jar",
             }
         },
         settings = {
