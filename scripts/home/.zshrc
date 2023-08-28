@@ -18,12 +18,7 @@ alias gpo="git pull origin"
 alias gst="git stash"
 alias gf="git fetch --tags --prune"
 alias gwt="git worktree"
-alias gob="go build"
-alias gor="go run"
-alias got="go test"
 alias grlc="git reflog expire --expire=5.days.ago --expire-unreachable=now"
-
-alias ff="find . -iname"
 
 # Maven alias
 alias mcc="mvn clean compile"
@@ -34,6 +29,7 @@ alias mdt="mvn dependency:tree"
 alias mdl="mvn dependency:list"
 alias mvndoc="mvn dependency:resolve -Dclassifier=javadoc"
 alias mvnsrc="mvn dependency:sources"
+alias mvnnew="mvn archetype:generate -DgroupId=com.example -DartifactId=myproject -DinteractiveMode=false"
 
 # Docker alias config
 alias di="docker image"
@@ -52,21 +48,27 @@ alias bug="brew upgrade"
 alias bud="brew update"
 alias bi="brew info"
 alias bs="brew search"
+alias bod="brew outdated"
+alias bcu="brew cleanup --prune=all"
 export GPG_TTY=$(tty)
 
-# Golang Config
+# Golang
 export GOPATH=$HOME/.go
 export GOBIN=$GOPATH/bin
 export PATH="$PATH:$GOBIN"
 alias cobra="cobra-cli"
+alias gob="go build"
+alias gor="go run"
+alias got="go test"
 
 # Config JDTLS
-export JAVA_HOME=$(/usr/libexec/java_home)
+# export JAVA_HOME=$(/usr/libexec/java_home)
 export M2_HOME="$HOME/.m2"
-export MAVEN_HOME="/usr/local/Cellar/maven/3.8.6/libexec"
+# export MAVEN_HOME="/usr/local/Cellar/maven/3.8.6/libexec"
 export WORKSPACE="$HOME/workspace"
 
 # Terminal & OS Config
+alias ff="find . -iname"
 alias ll="ls -lah"
 alias sup="softwareupdate"
 alias vim="nvim"
