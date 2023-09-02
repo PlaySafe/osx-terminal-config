@@ -1,0 +1,58 @@
+snippet jenkins_java
+#!groovy
+
+pipeline {
+    agent any
+
+    environment {
+        DOCKER_REPO_URL = ''
+        DOCKER_REPO_USERNAME=''
+        DOCKER_REPO_PASSWORD=''
+        ARTIFACT_NAME = '${0}'
+    }
+
+    stages {
+        stage('Prepare Environment Variable') {
+            steps {
+                script {
+                    def buildNumber = currentBuild.number
+                    env.BUILD_NUMBER = buildNumber.toString()
+                }
+            }
+        },
+        stage('Build Jar') {
+            steps {
+                script{
+                    echo 'Building Jar Artifact.............START'
+                    sh 'mvn clean package; ls -la '
+                    echo 'Building Jar Artifact..............DONE'
+                    echo "Build versions: ${env.BUILD_NUMBER}"
+                }
+            }
+        }
+        stage('Build Docker Image') {
+            steps {
+                script {
+                    echo 'Building Docker Image.............START'
+                    sh 'docker build -t ${DOCKER_REPO_URL}/${ARTIFACT_NAME}:${env.BUILD_ID} .'
+                    echo 'Building Docker Image..............DONE'
+                }
+            }
+        }
+        stage('Push Docker Image') {
+            steps {
+                script {
+                    echo 'Pushing Docker Image..............START'
+                    sh """
+                        set -x
+                        docker login -u ${DOCKER_REPO_USERNAME} -p ${DOCKER_REPO_PASSWORD} ${DOCKER_REPO_URL}
+                        docker push ${DOCKER_REPO_URL}/${ARTIFACT_NAME}:${env.BUILD_ID}
+                    """
+                    echo 'Pushing Docker Image...............DONE'
+                    echo "Docker Image is at: ${DOCKER_REPO_URL}/${ARTIFACT_NAME}:${env.BUILD_ID}"
+                }
+            }
+        }
+    }
+}
+endsnippet
