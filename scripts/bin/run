@@ -1,17 +1,16 @@
 #!/bin/zsh
-zparseopts -E -D i:=include x:=exclude h=help p=parallel c:=cmd
+zparseopts -E -D i:=include x:=exclude h=help c:=cmd
 
 if [[ ${help} ]]
 then
     echo "Automatically execute commands in all (specific) folders. The command you want to execute can be input 2 ways."
     echo "First, directly after 'run', the other is by using '-c' option. Check the example below."
     echo "Help use: run -h"
-    echo "Pattern 1: run <command> [-i=,-x=,-p,-c=] => run 'ls -lah' -i 'abc'"
-    echo "Pattern 2: run [-i=,-x=,-p] -c '<command>' => run -i 'abc' -c 'ls -lah'"
+    echo "Pattern 1: run <command> [-i=,-x=,-c=] => run 'ls -lah' -i 'abc'"
+    echo "Pattern 2: run [-i=,-x=] -c '<command>' => run -i 'abc' -c 'ls -lah'"
     echo "These are options you can use"
     echo "-i  Specify substring of folder's name that you want to include"
     echo "-x  Specify substring of folder's name that you want to exclude. This win against -i option"
-    echo "-p  Flag to run command in all folders in parallel. This will open a new Terminal tab for each folder"
     echo "-c  Specify the command to run. In case you cannot specify command as usual"
     exit
 fi
@@ -25,41 +24,18 @@ then
     exit
 fi
 
-folder_search="ls -d */"
+shell_command="ls -d */"
 if [[ ${include[2]} ]]
 then
-    folder_search="$folder_search | grep -E '${include[2]}'"
+    shell_command="$shell_command | grep -E '${include[2]}'"
 fi
 
 if [[ ${exclude[2]} ]]
 then
-    folder_search="$folder_search | grep -v '${exclude[2]}'"
+    shell_command="$shell_command | grep -v '${exclude[2]}'"
 fi
 
-dir=$(pwd);
-folders=($(eval $folder_search))
-
-if [[ ${parallel} ]]
-then
-    for folder in $folders
-    do
-      osascript 2>/dev/null -e "
-          tell application \"Terminal\"
-            activate
-            tell application \"System Events\" to keystroke \"t\" using command down
-            do script \"cd $dir/$folder; $command\" in front window
-          end tell
-      "
-    done
-else
-    for folder in $folders
-    do
-      echo "--------------------------------------------------------------"
-      echo "Progresssing in folder $dir/$folder";
-      eval "cd $dir/$folder; $command";
-      echo "";
-    done
-fi
-eval "cd $dir";
-echo "--------------------------------------------------------------"
-
+delimiter="--------------------------------------------------------------"
+parallel="parallel 'cd {} && echo \"$delimiter\" && pwd && $command'"
+shell_command="$shell_command | $parallel"
+eval $shell_command
