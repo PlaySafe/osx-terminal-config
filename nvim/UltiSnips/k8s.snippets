@@ -78,14 +78,14 @@ snippet service
 apiVersion: v1
 kind: Service
 metadata:
-  name: ${1:<string>}-service
+  name: ${1:<name>}-service
 spec:
   selector:
-    app: ${2:<string>}
+    app: ${1:<name>}
   ports:
     - protocol: TCP
-      port: ${3:80}
-      targetPort: ${4:8080}
+      port: ${2:<service_port>}
+      targetPort: ${3:<pod_port>}
 endsnippet
 
 snippet secret
