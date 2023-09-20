@@ -41,6 +41,7 @@ require('packer').startup(function(use)
     use 'vim-airline/vim-airline'
     use 'ryanoasis/vim-devicons'
     use 'tpope/vim-fugitive'
+    use 'godlygeek/tabular'
 
     use { 'nvim-treesitter/nvim-treesitter', run = ':TSUpdate' }
     use { 'ThePrimeagen/harpoon', requires = { 'nvim-lua/popup.nvim', 'nvim-lua/plenary.nvim' } }
