@@ -197,6 +197,8 @@ vim.keymap.set('n', '<C-j>', '<C-w>j', noremap)
 vim.keymap.set('n', '<C-h>', '<C-w>h', noremap)
 vim.keymap.set('n', '<C-k>', '<C-w>k', noremap)
 vim.keymap.set('n', '<C-l>', '<C-w>l', noremap)
+vim.keymap.set('n', '<C-n>', '<cmd>cnext<CR>', noremap)
+vim.keymap.set('n', '<C-p>', '<cmd>cprevious<CR>', noremap)
 
 --DAP (Debug Adapter Protocol)
 vim.keymap.set('n', '<leader>dD', [[<cmd>lua require('dap').clear_breakpoints()<CR>]], noremap)
