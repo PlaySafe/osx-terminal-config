@@ -13,7 +13,7 @@ end
 
 local packer_bootstrap = ensure_packer()
 
-vim.bo.syntax = 'on'
+-- vim.bo.syntax = 'on'
 
 vim.cmd [[packadd packer.nvim]]
 require('packer').startup(function(use)
@@ -35,11 +35,9 @@ require('packer').startup(function(use)
     use 'tpope/vim-surround'
     use 'majutsushi/tagbar'
     use 'jiangmiao/auto-pairs'
-    use 'kshenoy/vim-signature'
     use 'nvim-treesitter/nvim-treesitter-context'
     use 'flazz/vim-colorschemes'
     use { 'nvim-lualine/lualine.nvim', requires = { 'nvim-tree/nvim-web-devicons', opt = true } }
-    use 'ryanoasis/vim-devicons'
     use 'tpope/vim-fugitive'
     use 'godlygeek/tabular'
 
