@@ -169,6 +169,11 @@ _G.packer_plugins = {
     path = "/Users/toomtarm/.local/share/nvim/site/pack/packer/start/popup.nvim",
     url = "https://github.com/nvim-lua/popup.nvim"
   },
+  tabular = {
+    loaded = true,
+    path = "/Users/toomtarm/.local/share/nvim/site/pack/packer/start/tabular",
+    url = "https://github.com/godlygeek/tabular"
+  },
   tagbar = {
     loaded = true,
     path = "/Users/toomtarm/.local/share/nvim/site/pack/packer/start/tagbar",
