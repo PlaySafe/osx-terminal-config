@@ -34,7 +34,7 @@ require('packer').startup(function(use)
     use 'tpope/vim-commentary'
     use 'tpope/vim-surround'
     use 'majutsushi/tagbar'
-    use 'jiangmiao/auto-pairs'
+    use { "windwp/nvim-autopairs", config = function() require("nvim-autopairs").setup {} end }
     use 'nvim-treesitter/nvim-treesitter-context'
     use 'flazz/vim-colorschemes'
     use { 'nvim-lualine/lualine.nvim', requires = { 'nvim-tree/nvim-web-devicons', opt = true } }
