@@ -38,7 +38,7 @@ require('packer').startup(function(use)
     use 'kshenoy/vim-signature'
     use 'nvim-treesitter/nvim-treesitter-context'
     use 'flazz/vim-colorschemes'
-    use 'vim-airline/vim-airline'
+    use { 'nvim-lualine/lualine.nvim', requires = { 'nvim-tree/nvim-web-devicons', opt = true } }
     use 'ryanoasis/vim-devicons'
     use 'tpope/vim-fugitive'
     use 'godlygeek/tabular'
@@ -64,6 +64,46 @@ require('plugins.nvim-lspconfig')
 require('plugins.nvim-dap')
 require('plugins.cmp')
 require('plugins.telescope')
+require('lualine').setup {
+    options = {
+        icons_enabled = true,
+        theme = 'gruvbox',
+        component_separators = { left = '', right = '' },
+        section_separators = { left = '', right = '' },
+        disabled_filetypes = {
+            statusline = {},
+            winbar = {},
+        },
+        ignore_focus = {},
+        always_divide_middle = true,
+        globalstatus = false,
+        refresh = {
+            statusline = 1000,
+            tabline = 1000,
+            winbar = 1000,
+        }
+    },
+    sections = {
+        lualine_a = { 'mode' },
+        lualine_b = { 'branch', 'diff', 'diagnostics' },
+        lualine_c = { 'filename' },
+        lualine_x = { 'encoding', 'fileformat', 'filetype' },
+        lualine_y = { 'progress' },
+        lualine_z = { 'location' }
+    },
+    inactive_sections = {
+        lualine_a = {},
+        lualine_b = {},
+        lualine_c = { 'filename' },
+        lualine_x = { 'location' },
+        lualine_y = {},
+        lualine_z = {}
+    },
+    tabline = {},
+    winbar = {},
+    inactive_winbar = {},
+    extensions = {}
+}
 
 vim.g.loaded_perl_provider = 0
 vim.g.loaded_ruby_provider = 0
