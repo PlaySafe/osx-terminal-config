@@ -320,7 +320,7 @@ local servers = {
 
     terraformls = defaultLspSetup,
 
-    tsserver = {},
+    tsserver = defaultLspSetup,
 
     yamlls = {
         flags = lsp_flags,
