@@ -17,29 +17,29 @@ local packer_bootstrap = ensure_packer()
 
 vim.cmd [[packadd packer.nvim]]
 require('packer').startup(function(use)
-    use 'wbthomason/packer.nvim'
+    use { 'wbthomason/packer.nvim' }
 
     -- Main plugin for working
-    use 'neovim/nvim-lspconfig'
-    use 'williamboman/mason.nvim'
-    use 'williamboman/mason-lspconfig.nvim'
+    use { 'neovim/nvim-lspconfig' }
+    use { 'williamboman/mason.nvim' }
+    use { 'williamboman/mason-lspconfig.nvim' }
 
-    use 'hrsh7th/nvim-cmp'
-    use 'hrsh7th/cmp-nvim-lsp'
-    use 'hrsh7th/cmp-nvim-lua'
-    use 'hrsh7th/cmp-buffer'
-    use 'hrsh7th/cmp-path'
-    use 'hrsh7th/cmp-cmdline'
+    use { 'hrsh7th/nvim-cmp' }
+    use { 'hrsh7th/cmp-nvim-lsp' }
+    use { 'hrsh7th/cmp-nvim-lua' }
+    use { 'hrsh7th/cmp-buffer' }
+    use { 'hrsh7th/cmp-path' }
+    use { 'hrsh7th/cmp-cmdline' }
 
-    use 'tpope/vim-commentary'
-    use 'tpope/vim-surround'
-    use 'majutsushi/tagbar'
+    use { 'tpope/vim-commentary' }
+    use { 'tpope/vim-surround' }
+    use { 'majutsushi/tagbar' }
     use { "windwp/nvim-autopairs", config = function() require("nvim-autopairs").setup {} end }
-    use 'nvim-treesitter/nvim-treesitter-context'
-    use 'flazz/vim-colorschemes'
+    use { 'nvim-treesitter/nvim-treesitter-context' }
+    use { 'flazz/vim-colorschemes' }
     use { 'nvim-lualine/lualine.nvim', requires = { 'nvim-tree/nvim-web-devicons', opt = true } }
-    use 'tpope/vim-fugitive'
-    use 'godlygeek/tabular'
+    use { 'tpope/vim-fugitive' }
+    use { 'godlygeek/tabular' }
 
     use { 'nvim-treesitter/nvim-treesitter', run = ':TSUpdate' }
     use { 'ThePrimeagen/harpoon', requires = { 'nvim-lua/popup.nvim', 'nvim-lua/plenary.nvim' } }
@@ -47,8 +47,13 @@ require('packer').startup(function(use)
     use { 'mfussenegger/nvim-jdtls', requires = { 'rcarriga/nvim-dap-ui', requires = { 'mfussenegger/nvim-dap' } } }
     use { 'nvim-telescope/telescope-file-browser.nvim', requires = { 'nvim-telescope/telescope.nvim' } }
     use { 'nvim-telescope/telescope-dap.nvim', requires = { 'nvim-telescope/telescope.nvim' } }
-    use { 'nvim-telescope/telescope-media-files.nvim', requires = { 'nvim-telescope/telescope.nvim',
-        'nvim-lua/popup.nvim', 'nvim-lua/plenary.nvim' } }
+    use { 'nvim-telescope/telescope-media-files.nvim',
+        requires = {
+            'nvim-telescope/telescope.nvim',
+            'nvim-lua/popup.nvim',
+            'nvim-lua/plenary.nvim'
+        }
+    }
     -- Automatically set up your configuration after cloning packer.nvim
     -- Put this at the end after all plugins
     if packer_bootstrap then
@@ -113,7 +118,6 @@ vim.g.UltiSnipsExpandTrigger = "<C-j>"
 vim.g.UltiSnipsJumpForwardTrigger = "<C-j>"
 vim.g.UltiSnipsJumpBackwardTrigger = "<C-k>"
 vim.g.UltiSnipsEditSplit = "vertical"
-vim.g.airline_section_c = "%F"
 
 -- Set Style
 vim.g.nocompatible = true
