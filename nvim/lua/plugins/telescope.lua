@@ -57,6 +57,17 @@ telescope.setup {
                 ["<S-TAB>"] = actions.toggle_selection + actions.move_selection_previous,
                 ["<S-Right>"] = fb_actions.change_cwd,
                 ["<S-Left>"] = fb_actions.goto_parent_dir,
+            },
+            n = {
+                ["<F1>"] = actions.which_key,
+                ["<C-q>"] = actions.send_selected_to_qflist + actions.open_qflist,
+                ["<C-a>"] = actions.send_to_qflist + actions.open_qflist,
+                ["<C-o>"] = actions.open_qflist,
+                ["<TAB>"] = actions.toggle_selection + actions.move_selection_next,
+                ["<DEL>"] = actions.toggle_selection + actions.move_selection_next,
+                ["<S-TAB>"] = actions.toggle_selection + actions.move_selection_previous,
+                ["<S-Right>"] = fb_actions.change_cwd,
+                ["<S-Left>"] = fb_actions.goto_parent_dir,
             }
         },
         file_ignore_patterns = {
