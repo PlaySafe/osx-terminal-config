@@ -14,7 +14,7 @@ alias gl="git log"
 alias glg="git log --all --graph --decorate"
 alias grs="git reset"
 alias gp="git pull"
-alias gpo="git pull origin"
+alias gpo="git pull origin $(git branch --show-current)"
 alias gst="git stash"
 alias gf="git fetch --tags --prune"
 alias gwt="git worktree"
@@ -52,6 +52,7 @@ alias bod="brew outdated"
 alias bcu="brew cleanup --prune=all"
 export GPG_TTY=$(tty)
 
+
 # Golang
 export GOPATH=$HOME/.go
 export GOBIN=$GOPATH/bin
@@ -61,11 +62,22 @@ alias gob="go build"
 alias gor="go run"
 alias got="go test"
 
+# Rust ConfigHOME/.cargo/bin
+export RUSTPATH=$HOME/.cargo
+export RUSTBIN=$RUSTPATH/bin
+export RUSTENV=$RUSTPATH/env
+export PATH="$PATH:$RUSTBIN:$RUSTENV"
+
 # Config JDTLS
-# export JAVA_HOME=$(/usr/libexec/java_home)
+export JAVA_HOME="/usr/local/Cellar/openjdk@17/17.0.8.1/libexec/openjdk.jdk/Contents/Home"
 export M2_HOME="$HOME/.m2"
-# export MAVEN_HOME="/usr/local/Cellar/maven/3.8.6/libexec"
 export WORKSPACE="$HOME/workspace"
+alias java8="export PATH='/usr/local/opt/openjdk@8/bin:$PATH'"
+alias java11="export PATH='/usr/local/opt/openjdk@11/bin:$PATH'"
+alias java17="export PATH='/usr/local/opt/openjdk@17/bin:$PATH'"
+alias javahome8="export JAVA_HOME='/usr/local/Cellar/openjdk@8/1.8.0-382_1/libexec/openjdk.jdk/Contents/Home'"
+alias javahome11="export JAVA_HOME='/usr/local/Cellar/openjdk@11/11.0.20.1/libexec/openjdk.jdk/Contents/Home'"
+alias javahome17="export JAVA_HOME='/usr/local/Cellar/openjdk@17/17.0.8.1/libexec/openjdk.jdk/Contents/Home'"
 
 # Terminal & OS Config
 alias ff="find . -iname"
@@ -75,7 +87,6 @@ alias vim="nvim"
 alias myip="ifconfig en0 | grep inet | awk '{ print $2 }'"
 export PATH="/usr/local/opt/openjdk@17/bin:$PATH:$GOBIN"
 autoload -Uz compinit && compinit
-export CPPFLAGS="-I/usr/local/opt/openjdk@17/include"
 
 function git_branch() {
     branch=$(git branch --show-current 2> /dev/null)
@@ -92,3 +103,4 @@ COLOR_GIT=$'\e[38;5;39m'
 setopt PROMPT_SUBST
 export PROMPT=' ${COLOR_DIR}%.${COLOR_GIT}$(git_branch)${COLOR_DEF}  '
 
+alias lg="ledger"
