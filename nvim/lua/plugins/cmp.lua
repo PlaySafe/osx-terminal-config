@@ -1,30 +1,30 @@
 local cmp = require('cmp')
 local kind_icons = {
-    Class = "ﴯ",
-    Color = "",
-    Constant = "",
-    Constructor = "",
-    Enum = "",
-    EnumMember = "",
-    Event = "",
-    Field = "",
-    File = "",
-    Folder = "",
-    Function = "",
-    Interface = "",
-    Keyword = "",
-    Method = "",
-    Module = "",
-    Operator = "",
-    Property = "ﰠ",
-    Reference = "",
-    Snippet = "",
-    Struct = "",
-    Text = "",
-    TypeParameter = "",
-    Unit = "",
-    Value = "",
-    Variable = "",
+    Class = "©",
+    Color = "🎨",
+    Constant = "π",
+    Constructor = "©",
+    Enum = "E",
+    EnumMember = "E",
+    Event = "🎩",
+    Field = "🤵",
+    File = "📄",
+    Folder = "📁",
+    Function = "ƒ",
+    Interface = "¡",
+    Keyword = "",
+    Method = "ƒ",
+    Module = "📦",
+    Operator = "±",
+    Property = "€",
+    Reference = "👆",
+    Snippet = "=",
+    Struct = "{}",
+    Text = "💬",
+    TypeParameter = "⍴",
+    Unit = "₿",
+    Value = "∞",
+    Variable = "?",
 }
 
 cmp.setup({
@@ -38,7 +38,7 @@ cmp.setup({
         format = function(entry, vim_item)
             -- Kind icons
             -- Concatinate the icons with name of the item-kind
-            vim_item.kind = string.format("%s %s %s", kind_icons[vim_item.kind], vim_item.kind, vim_item.menu)
+            vim_item.kind = string.format("%s %s", kind_icons[vim_item.kind], vim_item.menu)
             vim_item.menu = ({
                 nvim_lsp = "[LSP]",
                 spell = "[Spellings]",

@@ -32,8 +32,8 @@ telescope.setup {
     defaults = {
         -- Default configuration for telescope goes here:
         -- config_key = value,
-        prompt_prefix = " 🔍 ",
-        selection_caret = "  ",
+        prompt_prefix = "🔍 ",
+        selection_caret = "👉",
         path_display = {
             shorten = {
                 len = 2,
@@ -45,6 +45,7 @@ telescope.setup {
             treesitter = false,
         },
         sorting_strategy = "ascending",
+        multi_icon = "🎯",
         color_devicons = true,
         mappings = {
             i = {
@@ -140,6 +141,10 @@ telescope.setup {
             theme = "ivy",
             hijack_netrw = false, -- disables netrw and use telescope-file-browser in its place
             hidden = true,
+            no_ignore = true,
+            dir_icon = "📁",
+            dir_icon_hl = "",
+            -- depth = 3,
         },
         media_files = {
             -- filetypes whitelist
