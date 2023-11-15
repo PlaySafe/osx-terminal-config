@@ -338,7 +338,8 @@ local servers = {
             },
             yaml = {
                 schemas = {
-                    ["https://raw.githubusercontent.com/instrumenta/kubernetes-json-schema/master/v1.18.0-standalone-strict/all.json"] = "/*.k8s.yaml",
+                    ["https://raw.githubusercontent.com/instrumenta/kubernetes-json-schema/master/v1.18.0-standalone-strict/all.json"] =
+                    "/*.k8s.yaml",
                 }
             }
         },
@@ -354,8 +355,8 @@ local servers = {
 require("mason").setup({
     ui = {
         icons = {
-            package_installed = "",
-            package_pending = "",
+            package_installed = "✅",
+            package_pending = "🕐",
             package_uninstalled = "",
         }
     }
