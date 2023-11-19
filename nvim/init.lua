@@ -141,7 +141,7 @@ vim.o.formatoptions = tcqrn1
 vim.o.hlsearch = true
 vim.o.cmdheight = 1
 vim.o.signcolumn = 'yes' --Leave front space for error, +, - sign
-vim.o.colorcolumn = 120  --Show the vertical line of nth column
+vim.o.colorcolumn = '80' --Show the vertical line of nth column
 vim.o.completeopt = 'menu,menuone,noselect'
 
 

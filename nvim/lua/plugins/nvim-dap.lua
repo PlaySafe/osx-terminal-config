@@ -1,15 +1,33 @@
-vim.fn.sign_define("DapBreakpoint", { text = "", texthl = "Red", linehl = "NONE", numhl = "NONE", culhl = "NONE" })
+vim.fn.sign_define("DapBreakpoint", {
+    text = "●",
+    texthl = "Green",
+    linehl = "NONE",
+    numhl = "NONE",
+    culhl = "NONE"
+})
 vim.fn.sign_define("DapBreakpointCondition", {
-    text = "",
+    text = "◯",
     texthl = "Yellow",
     linehl = "NONE",
     numhl = "NONE",
     culhl = "NONE"
 })
-vim.fn.sign_define("DapLogPoint", { text = "", texthl = "White", linehl = "NONE", numhl = "NONE", culhl = "NONE" })
-vim.fn.sign_define("DapStopped", { text = "", texthl = "Blue", linehl = "NONE", numhl = "NONE", culhl = "NONE" })
+vim.fn.sign_define("DapLogPoint", {
+    text = "△",
+    texthl = "White",
+    linehl = "NONE",
+    numhl = "NONE",
+    culhl = "NONE"
+})
+vim.fn.sign_define("DapStopped", {
+    text = "◼",
+    texthl = "Red",
+    linehl = "NONE",
+    numhl = "NONE",
+    culhl = "NONE"
+})
 vim.fn.sign_define("DapBreakpointRejected", {
-    text = "",
+    text = "🚫",
     texthl = "Grey",
     linehl = "NONE",
     numhl = "NONE",
@@ -17,7 +35,11 @@ vim.fn.sign_define("DapBreakpointRejected", {
 })
 
 require("dapui").setup({
-    icons = { expanded = "", collapsed = "", current_frame = "" },
+    icons = {
+        expanded = "+",
+        collapsed = "-",
+        current_frame = "*"
+    },
     mappings = {
         -- Use a table to apply multiple mappings
         expand = { "<CR>", "<SPACE>" },
@@ -72,19 +94,19 @@ require("dapui").setup({
         -- Display controls in this element
         element = "repl",
         icons = {
-            pause = "",
-            play = "",
-            step_into = "",
-            step_over = "",
-            step_out = "",
-            step_back = "",
-            run_last = "",
-            terminate = "",
+            pause = "‖",
+            play = "▷",
+            step_into = "↓",
+            step_over = "→",
+            step_out = "↑",
+            step_back = "←",
+            run_last = "»",
+            terminate = "⏻",
         },
     },
     floating = {
-        max_height = nil,  -- These can be integers or a float between 0 and 1.
-        max_width = nil,   -- Floats will be treated as percentage of your screen.
+        max_height = nil, -- These can be integers or a float between 0 and 1.
+        max_width = nil, -- Floats will be treated as percentage of your screen.
         border = "single", -- Border style. Can be "single", "double" or "rounded"
         mappings = {
             close = { "q", "<Esc>" },
