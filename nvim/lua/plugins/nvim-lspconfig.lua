@@ -269,7 +269,6 @@ local servers = {
             }
         },
         settings = {
-            ["codeLens.enable"] = true,
             ["java.autobuild.enabled"] = true,
             ["java.completion.enabled"] = true,
             ["java.configuration.maven.globalSettings"] = vim.fs.normalize("$HOME/.m2/settings.xml"),
@@ -280,15 +279,12 @@ local servers = {
             ["java.jdt.ls.java.home"] = vim.fs.normalize("$JAVA_HOME"),
             ["java.maven.downloadSources"] = true,
             ["java.maven.updateSnapshots"] = true,
-            ["java.progressReports.enabled"] = false,
             ["java.referenceCodeLens.enabled"] = true,
             ["java.saveActions.organizeImports"] = true,
             ["java.server.launchMode"] = "Standard",
             ["java.signatureHelp.description.enabled"] = true,
             ["java.signatureHelp.enabled"] = true,
             ["java.symbols.includeSourceMethodDeclarations"] = true,
-            ["java.import.enabled"] = true,
-            ["java.rename.enabled"] = true,
             ["java.contentProvider.preferred"] = 'fernflower',
             ["java.source.organizeImports.starThreshold"] = 9999,
             ["java.source.organizeImports.staticStarThreshold"] = 9999,
