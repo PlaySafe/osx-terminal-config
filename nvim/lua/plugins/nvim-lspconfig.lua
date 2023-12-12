@@ -273,6 +273,7 @@ local servers = {
             ["java.completion.enabled"] = true,
             ["java.configuration.maven.globalSettings"] = vim.fs.normalize("$HOME/.m2/settings.xml"),
             ["java.configuration.maven.userSettings"] = vim.fs.normalize("$HOME/.m2/settings.xml"),
+            ["java.format.enable"] = false,
             ["java.format.settings.url"] = vim.fs.normalize("$HOME/.config/nvim/format/java_format.xml"),
             ["java.home"] = vim.fs.normalize("$JAVA_HOME"),
             ["java.implementationsCodeLens.enabled"] = true,
