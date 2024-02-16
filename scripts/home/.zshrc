@@ -83,7 +83,6 @@ alias javahome17="export JAVA_HOME='/usr/local/Cellar/openjdk@17/17.0.9/libexec/
 alias ff="find . -iname"
 alias ll="ls -lah"
 alias sup="softwareupdate"
-alias vim="nvim"
 alias myip="ifconfig en0 | grep inet | awk '{ print $2 }'"
 export PATH="/usr/local/opt/openjdk@17/bin:$PATH:$GOBIN"
 autoload -Uz compinit && compinit
