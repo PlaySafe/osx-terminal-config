@@ -242,6 +242,9 @@ vim.keymap.set('n', '<C-l>', '<C-w>l', noremap)
 vim.keymap.set('n', '<C-n>', '<cmd>cnext<CR>', noremap)
 vim.keymap.set('n', '<C-p>', '<cmd>cprevious<CR>', noremap)
 
+-- Unicode Decode Command
+vim.keymap.set('n', '<leader>udc', [[<cmd>%s\\/\\u\(\x\x\x\x\)/\=nr2char(\'0x\'.submatch(1))/g]], noremap)
+
 --DAP (Debug Adapter Protocol)
 vim.keymap.set('n', '<leader>dD', [[<cmd>lua require('dap').clear_breakpoints()<CR>]], noremap)
 vim.keymap.set('n', '<leader>db', [[<cmd>lua require('dap').toggle_breakpoint()<CR>]], noremap)
