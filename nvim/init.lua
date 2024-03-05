@@ -222,10 +222,10 @@ vim.keymap.set('n', '<leader>e', [[<cmd>lua require("harpoon.ui").toggle_quick_m
 --VISUALIZE TABS AND NEWLINES
 vim.keymap.set('n', '<F12>', [[<cmd>set list!<CR>]], noremap)
 vim.keymap.set('i', '<F12>', [[<cmd>set list!<CR>]], noremap)
-vim.keymap.set('n', '<leader><Up>', '[[<cmd>resize -10<CR>]]', noremap)
-vim.keymap.set('n', '<leader><Down>', '[[<cmd>resize +10<CR>]]', noremap)
-vim.keymap.set('n', '<leader><Left>', '[[<cmd>vertical resize -10<CR>]]', noremap)
-vim.keymap.set('n', '<leader><Right>', '[[<cmd>vertical resize +10<CR>]]', noremap)
+vim.keymap.set('n', '<leader><Up>', '[[<cmd>resize -5<CR>]]', noremap)
+vim.keymap.set('n', '<leader><Down>', '[[<cmd>resize +5<CR>]]', noremap)
+vim.keymap.set('n', '<leader><Left>', '[[<cmd>vertical resize -5<CR>]]', noremap)
+vim.keymap.set('n', '<leader><Right>', '[[<cmd>vertical resize +5<CR>]]', noremap)
 
 --PROJECT STRUCTURE
 vim.keymap.set('n', '<leader>+', '<cmd>foldopen<CR>', noremap)
