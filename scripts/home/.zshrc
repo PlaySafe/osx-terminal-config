@@ -76,8 +76,8 @@ alias java8="export PATH='/usr/local/opt/openjdk@8/bin:$PATH'"
 alias java11="export PATH='/usr/local/opt/openjdk@11/bin:$PATH'"
 alias java17="export PATH='/usr/local/opt/openjdk@17/bin:$PATH'"
 alias javahome8="export JAVA_HOME='/usr/local/Cellar/openjdk@8/1.8.0-392/libexec/openjdk.jdk/Contents/Home'"
-alias javahome11="export JAVA_HOME='/usr/local/Cellar/openjdk@11/11.0.21/libexec/openjdk.jdk/Contents/Home'"
-alias javahome17="export JAVA_HOME='/usr/local/Cellar/openjdk@17/17.0.9/libexec/openjdk.jdk/Contents/Home'"
+alias javahome11="export JAVA_HOME='/usr/local/Cellar/openjdk@11/11.0.22/libexec/openjdk.jdk/Contents/Home'"
+alias javahome17="export JAVA_HOME='/usr/local/Cellar/openjdk@17/17.0.10/libexec/openjdk.jdk/Contents/Home'"
 
 # Terminal & OS Config
 alias ff="find . -iname"
@@ -102,4 +102,6 @@ COLOR_GIT=$'\e[38;5;39m'
 setopt PROMPT_SUBST
 export PROMPT='@ ${COLOR_DIR}%.${COLOR_GIT}$(git_branch)${COLOR_DEF} > '
 
-alias lg="ledger"
+# Jira Cli
+alias jil="jira issue list"
+alias jilmy="jira issue list -a='Kampanart Saardarewut' -s~Done"
